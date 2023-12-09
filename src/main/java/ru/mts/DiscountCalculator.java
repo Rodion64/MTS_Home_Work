@@ -29,7 +29,7 @@ public class DiscountCalculator {
      * @see DiscountCalculator#calculateDiscount(DiscountCalculator)
      */
     public DiscountCalculator(int amountProduct, double priceProduct, double discountOnProduct) {
-        if (amountProduct <= 0 || priceProduct < 0 || (discountOnProduct < 0 || discountOnProduct > 100)) {
+        if (amountProduct <= 0 || priceProduct <= 0 || (discountOnProduct < 0 || discountOnProduct > 100)) {
             throw new IllegalArgumentException(String.format("Incorrect arguments: [%s, %s, %s]", amountProduct, priceProduct, discountOnProduct));
         }
         this.amountProduct = amountProduct;
