@@ -1,5 +1,7 @@
 package ru.mts;
 
+import java.util.Optional;
+
 /**
  * Класс отвечает за расчет стоимости товара
  *
@@ -7,18 +9,12 @@ package ru.mts;
  * @autor Сущев Родион
  */
 public class DiscountCalculator {
-    /**
-     * целочисленная переменная для значений количества товара
-     */
-    private final int amountProduct;
-    /**
-     * вещественная переменная для стоимости единица товара товара
-     */
-    private final double priceProduct;
-    /**
-     * вещественная переменная для скидки
-     */
-    private final double discountOnProduct;
+
+    private final Integer amountProduct; //целочисленная переменная для значений количества товара
+
+    private final Double priceProduct; //вещественная переменная для стоимости единица товара товара
+
+    private final Double discountOnProduct;//вещественная переменная для скидки
 
     /**
      * Конструктор - создание нового объекта с определенными значениями
@@ -28,13 +24,17 @@ public class DiscountCalculator {
      * @param discountOnProduct скидка
      * @see DiscountCalculator#calculateDiscount(DiscountCalculator)
      */
-    public DiscountCalculator(int amountProduct, double priceProduct, double discountOnProduct) {
-        if (amountProduct <= 0 || priceProduct <= 0 || (discountOnProduct < 0 || discountOnProduct > 100)) {
-            throw new IllegalArgumentException(String.format("Incorrect arguments: [%s, %s, %s]", amountProduct, priceProduct, discountOnProduct));
-        }
-        this.amountProduct = amountProduct;
-        this.priceProduct = priceProduct;
-        this.discountOnProduct = discountOnProduct;
+    public DiscountCalculator(Integer amountProduct, Double priceProduct, Double discountOnProduct) {
+
+        this.amountProduct = Optional.of(amountProduct)
+                .filter(num -> num > 0)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("Incorrect arguments: [%s, %s, %s]", amountProduct, priceProduct, discountOnProduct)));
+        this.priceProduct = Optional.of(priceProduct)
+                .filter(num -> num > 0)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("Incorrect arguments: [%s, %s, %s]", amountProduct, priceProduct, discountOnProduct)));
+        this.discountOnProduct = Optional.of(discountOnProduct)
+                .filter(num -> num > 0 || num < 100)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("Incorrect arguments: [%s, %s, %s]", amountProduct, priceProduct, discountOnProduct)));
     }
 
     /**
