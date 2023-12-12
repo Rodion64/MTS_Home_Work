@@ -1,5 +1,7 @@
 package ru.mts;
 
+import javax.swing.text.html.Option;
+
 import static ru.mts.DiscountCalculator.calculateDiscount;
 
 public class Main {
@@ -7,7 +9,7 @@ public class Main {
         DiscountCalculator discountCalculator1 = new DiscountCalculator(1, 100.0, 0.75);
         calculateDiscount(discountCalculator1);
 
-        DiscountCalculator discountCalculator2 = new DiscountCalculator(1, 100.0, 42.575);
+        DiscountCalculator discountCalculator2 = new DiscountCalculator(1, 1.0, 42.575);
         calculateDiscount(discountCalculator2);
 
         DiscountCalculator discountCalculator3 = new DiscountCalculator(1, 100.0, 59.1);
