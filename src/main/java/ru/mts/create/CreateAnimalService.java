@@ -1,7 +1,9 @@
-package ru.mts;
+package ru.mts.create;
 
-import java.util.HashSet;
-import java.util.Set;
+import ru.mts.animals.Animal;
+import ru.mts.animals.Cat;
+
+import java.math.BigDecimal;
 
 /**
  * The interface Create animal service.
@@ -20,6 +22,7 @@ public interface CreateAnimalService {
      * @return the animal
      */
     Animal createAnimal();
+
 
     /**
      * Метод создает 10 уникальных животных при помощи цикла while

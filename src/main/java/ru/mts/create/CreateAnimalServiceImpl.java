@@ -1,8 +1,10 @@
-package ru.mts;
+package ru.mts.create;
+
+import ru.mts.animals.Animal;
+import ru.mts.animals.Cat;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * The type Create animal service.
@@ -11,16 +13,30 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
     /**
      * The Hash set.
      */
-    public HashSet<Object> hashSet = new HashSet<>();
+    private HashSet<Object> hashSet = new HashSet<>();
 
     /**
      * Get hash set.
      */
     public void getHashSet() {
         for (Object o : this.hashSet) {
-            System.out.println(o.toString());
+            System.out.println(o.hashCode());
         }
     }
+    @Override
+    public Animal createAnimal() {
+
+        return new Cat("Сфинкс", "Афоня", random(100), "Злой");
+    }
+
+    private static BigDecimal random(int range) {
+        BigDecimal max = new BigDecimal(range);
+        BigDecimal randFromDouble = new BigDecimal(Math.random());
+        BigDecimal actualRandomDec = randFromDouble.multiply(max);
+        actualRandomDec = actualRandomDec.setScale(2, BigDecimal.ROUND_DOWN);
+        return actualRandomDec;
+    }
+
     @Override
     public void createAnimals(int count) {
         if (count > 0) {
@@ -30,15 +46,12 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                         animal.getBreed(), animal.getName(), animal.getCost(), animal.getCharacter());
                 System.out.println(animalInfo);
                 hashSet.add(animal);
+                System.out.println(animal.hashCode());
             }
         }
         else{
             throw new IllegalArgumentException(String.format("Incorrect arguments: "+ count));
         }
-    }
-    @Override
-    public Animal createAnimal() {
-        return new Cat("Сфинкс", "Афоня", new BigDecimal("1000.568"), "Злой");
     }
 
     public void createAnimals() {
@@ -50,6 +63,7 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                     animal.getBreed(), animal.getName(), animal.getCost(), animal.getCharacter());
             System.out.println(animalInfo);
             hashSet.add(animal);
+            System.out.println(animal.hashCode());
         } while (count < 10);
     }
 }

@@ -1,21 +1,18 @@
-package ru.mts;
+package ru.mts.animals;
 
 import java.math.BigDecimal;
 
-/**
- * The type Cat.
- */
-public class Cat extends Pet implements Animal{
+public class Wolf extends Predator{
 
     /**
-     * Instantiates a new Cat.
+     * Instantiates a new Predator.
      *
      * @param breed     the breed
      * @param name      the name
      * @param cost      the cost
      * @param character the character
      */
-    public Cat(String breed, String name, BigDecimal cost, String character) {
+    public Wolf(String breed, String name, BigDecimal cost, String character) {
         super(breed, name, cost, character);
     }
 }

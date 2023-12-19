@@ -1,11 +1,13 @@
-package ru.mts;
+package ru.mts.animals;
+
+import ru.mts.animals.AbstractAnimal;
 
 import java.math.BigDecimal;
 
 /**
  * The type Pet.
  */
-abstract public class Pet extends AbstractAnimal{
+abstract public class Pet extends AbstractAnimal {
     /**
      * Instantiates a new Pet.
      *

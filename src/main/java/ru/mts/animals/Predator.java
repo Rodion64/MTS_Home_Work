@@ -1,11 +1,14 @@
-package ru.mts;
+package ru.mts.animals;
+
+import ru.mts.animals.AbstractAnimal;
+import ru.mts.animals.Animal;
 
 import java.math.BigDecimal;
 
 /**
  * The type Predator.
  */
-abstract public class Predator extends AbstractAnimal implements Animal{
+abstract public class Predator extends AbstractAnimal implements Animal {
     /**
      * Instantiates a new Predator.
      *

@@ -1,7 +1,8 @@
-package ru.mts;
+package ru.mts.animals;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 /**
  * The type Abstract animal.
@@ -39,6 +40,7 @@ abstract public class AbstractAnimal implements Animal {
         this.character = character;
     }
 
+
     @Override
     public String getBreed() {
         return breed;
@@ -59,4 +61,16 @@ abstract public class AbstractAnimal implements Animal {
         return character;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        AbstractAnimal that = (AbstractAnimal) object;
+        return Objects.equals(breed, that.breed) && Objects.equals(name, that.name) && Objects.equals(cost, that.cost) && Objects.equals(character, that.character);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(breed, name, cost, character);
+    }
 }
