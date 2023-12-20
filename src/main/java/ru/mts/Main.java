@@ -1,4 +1,4 @@
-package ru.mts.main;
+package ru.mts;
 
 import ru.mts.animals.Animal;
 import ru.mts.animals.Cat;
@@ -21,6 +21,7 @@ public class Main {
 
             @Override
             public Animal createAnimal() {
+
                 return new Cat("Сфинкс", "Афоня", random(100), "Злой");
             }
 

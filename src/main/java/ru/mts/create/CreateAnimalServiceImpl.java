@@ -13,16 +13,17 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
     /**
      * The Hash set.
      */
-    private HashSet<Object> hashSet = new HashSet<>();
+    private HashSet<Animal> hashSet = new HashSet<>();
 
     /**
-     * Get hash set.
+     * Print hash set.
      */
-    public void getHashSet() {
+    public void printHashSet() {
         for (Object o : this.hashSet) {
             System.out.println(o.hashCode());
         }
     }
+
     @Override
     public Animal createAnimal() {
 
@@ -48,9 +49,8 @@ public class CreateAnimalServiceImpl implements CreateAnimalService {
                 hashSet.add(animal);
                 System.out.println(animal.hashCode());
             }
-        }
-        else{
-            throw new IllegalArgumentException(String.format("Incorrect arguments: "+ count));
+        } else {
+            throw new IllegalArgumentException(String.format("Incorrect arguments: " + count));
         }
     }
 

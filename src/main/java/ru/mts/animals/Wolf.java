@@ -2,7 +2,7 @@ package ru.mts.animals;
 
 import java.math.BigDecimal;
 
-public class Wolf extends Predator{
+public class Wolf extends Predator {
 
     /**
      * Instantiates a new Predator.

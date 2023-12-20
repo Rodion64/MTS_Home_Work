@@ -18,7 +18,7 @@ abstract public class Predator extends AbstractAnimal implements Animal {
      * @param character the character
      */
     public Predator(String breed, String name, BigDecimal cost, String character) {
-            super(breed, name, cost, character);
-        }
+        super(breed, name, cost, character);
+    }
 
 }
