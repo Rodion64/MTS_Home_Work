@@ -1,18 +1,44 @@
 package ru.mts;
 
-import javax.swing.text.html.Option;
+import ru.mts.animals.Animal;
+import ru.mts.animals.Cat;
+import ru.mts.create.CreateAnimalService;
+import ru.mts.create.CreateAnimalServiceImpl;
 
-import static ru.mts.DiscountCalculator.calculateDiscount;
+import java.math.BigDecimal;
+
 
 public class Main {
     public static void main(String[] args) {
-        DiscountCalculator discountCalculator1 = new DiscountCalculator(1, 100.0, 0.75);
-        calculateDiscount(discountCalculator1);
+        CreateAnimalService createAnimalService = new CreateAnimalServiceImpl();
+        createAnimalService.createAnimals();
+        createAnimalService.createAnimals(5);
+        CreateAnimalService createAnimalService1 = new CreateAnimalService() {
+            @Override
+            public void createAnimals(int count) {
 
-        DiscountCalculator discountCalculator2 = new DiscountCalculator(1, 1.0, 42.575);
-        calculateDiscount(discountCalculator2);
+            }
 
-        DiscountCalculator discountCalculator3 = new DiscountCalculator(1, 100.0, 59.1);
-        calculateDiscount(discountCalculator3);
+            @Override
+            public Animal createAnimal() {
+
+                return new Cat("Сфинкс", "Афоня", random(100), "Злой");
+            }
+
+            @Override
+            public void createAnimals() {
+                CreateAnimalService.super.createAnimals();
+            }
+
+            private BigDecimal random(int range) {
+                BigDecimal max = new BigDecimal(range);
+                BigDecimal randFromDouble = new BigDecimal(Math.random());
+                BigDecimal actualRandomDec = randFromDouble.multiply(max);
+                actualRandomDec = actualRandomDec.setScale(2, BigDecimal.ROUND_DOWN);
+                return actualRandomDec;
+            }
+        };
+        createAnimalService1.createAnimals();
+
     }
 }
