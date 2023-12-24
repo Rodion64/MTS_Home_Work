@@ -4,25 +4,25 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * The type Cat.
+ * The type Tiger.
  */
-public class Cat extends Pet {
-
+public class Tiger extends Predator {
     /**
-     * Instantiates a new Cat.
+     * Instantiates a new Tiger.
      *
      * @param breed     the breed
      * @param name      the name
      * @param cost      the cost
      * @param character the character
+     * @param birthday  the birthday
      */
-    public Cat(String breed, String name, BigDecimal cost, String character, LocalDate birthday) {
+    public Tiger(String breed, String name, BigDecimal cost, String character, LocalDate birthday) {
         super(breed, name, cost, character, birthday);
     }
 
     @Override
     public String toString() {
-        return "Cat{" +
+        return "Tiger{" +
                 "breed='" + breed + '\'' +
                 ", name='" + name + '\'' +
                 ", cost=" + cost +

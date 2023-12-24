@@ -1,14 +1,13 @@
 package ru.mts.animals;
 
-import ru.mts.animals.AbstractAnimal;
-import ru.mts.animals.Animal;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 /**
  * The type Predator.
  */
-abstract public class Predator extends AbstractAnimal implements Animal {
+abstract public class Predator extends AbstractAnimal {
     /**
      * Instantiates a new Predator.
      *
@@ -16,9 +15,9 @@ abstract public class Predator extends AbstractAnimal implements Animal {
      * @param name      the name
      * @param cost      the cost
      * @param character the character
+     * @param birthday  the birthday
      */
-    public Predator(String breed, String name, BigDecimal cost, String character) {
-        super(breed, name, cost, character);
+    public Predator(String breed, String name, BigDecimal cost, String character, LocalDate birthday) {
+        super(breed, name, cost, character, birthday);
     }
-
 }
