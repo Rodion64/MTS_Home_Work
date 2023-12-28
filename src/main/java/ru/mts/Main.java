@@ -1,44 +1,28 @@
 package ru.mts;
 
 import ru.mts.animals.Animal;
-import ru.mts.animals.Cat;
-import ru.mts.create.CreateAnimalService;
-import ru.mts.create.CreateAnimalServiceImpl;
-
-import java.math.BigDecimal;
+import ru.mts.create.AnimalTypes;
+import ru.mts.create.CreateServiceAnimalFactoryImpl;
+import ru.mts.search.SearchService;
+import ru.mts.search.SearchServiceImpl;
 
 
 public class Main {
     public static void main(String[] args) {
-        CreateAnimalService createAnimalService = new CreateAnimalServiceImpl();
-        createAnimalService.createAnimals();
-        createAnimalService.createAnimals(5);
-        CreateAnimalService createAnimalService1 = new CreateAnimalService() {
-            @Override
-            public void createAnimals(int count) {
+        CreateServiceAnimalFactoryImpl animalFactory = new CreateServiceAnimalFactoryImpl();
+        Animal[] animals = animalFactory.createAnimals(10, AnimalTypes.WOLF);
+        animalFactory.printAnimals(animals);
+        SearchService searchService = new SearchServiceImpl();
 
-            }
+        // Поиск животных, родившихся в високосный год
+        searchService.findLeapYearNames(animals);
 
-            @Override
-            public Animal createAnimal() {
+        // Поиск животных, возраст которых старше N лет
+        searchService.findOlderAnimal(animals, 10);
 
-                return new Cat("Сфинкс", "Афоня", random(100), "Злой");
-            }
-
-            @Override
-            public void createAnimals() {
-                CreateAnimalService.super.createAnimals();
-            }
-
-            private BigDecimal random(int range) {
-                BigDecimal max = new BigDecimal(range);
-                BigDecimal randFromDouble = new BigDecimal(Math.random());
-                BigDecimal actualRandomDec = randFromDouble.multiply(max);
-                actualRandomDec = actualRandomDec.setScale(2, BigDecimal.ROUND_DOWN);
-                return actualRandomDec;
-            }
-        };
-        createAnimalService1.createAnimals();
-
+        // Поиск дубликатов животных
+        searchService.findDuplicate(animals);
     }
+
 }
+
