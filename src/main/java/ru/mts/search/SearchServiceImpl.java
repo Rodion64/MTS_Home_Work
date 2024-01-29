@@ -21,7 +21,7 @@ public class SearchServiceImpl implements SearchService {
                 names.add(animal.getName());
             }
         }
-        System.out.println("Р–РёРІРѕС‚РЅС‹Рµ, СЂРѕРґРёРІС€РёРµСЃСЏ РІ РІРёСЃРѕРєРѕСЃРЅС‹Р№ РіРѕРґ:");
+        System.out.println("Животные, родившиеся в високосный год:");
         for (String name : names) {
             System.out.println(name);
         }
@@ -47,7 +47,7 @@ public class SearchServiceImpl implements SearchService {
                 olderAnimals.add(animal);
             }
         }
-        System.out.printf("Р–РёРІРѕС‚РЅС‹Рµ, РІРѕР·СЂР°СЃС‚ РєРѕС‚РѕСЂС‹С… СЃС‚Р°СЂС€Рµ %s Р»РµС‚:%n", age);
+        System.out.printf("Животные, возраст которых старше %s лет:%n", age);
         for (Animal animal : olderAnimals) {
             System.out.println(animal.getName() + " (" + animal.getBirthday().getYear() + ")");
         }
@@ -62,12 +62,13 @@ public class SearchServiceImpl implements SearchService {
         int t = 0;
         for (Animal animal : animals) {
             if (!set.add(animal)) {
-                System.out.println("Р”СѓР±Р»РёРєР°С‚: " + animal.getName());
+                System.out.println("Дубликат: " + animal.getName());
                 t++;
             }
         }
         if (t == 0) {
-            System.out.println("Р”СѓР±Р»РёРєР°С‚С‹ РЅРµ РЅР°Р№РґРµРЅС‹ !");
+            System.out.println("Дубликаты не найдены !");
         }
     }
+
 }

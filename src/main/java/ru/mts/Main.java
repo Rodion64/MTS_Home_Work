@@ -14,13 +14,13 @@ public class Main {
         animalFactory.printAnimals(animals);
         SearchService searchService = new SearchServiceImpl();
 
-        // РџРѕРёСЃРє Р¶РёРІРѕС‚РЅС‹С…, СЂРѕРґРёРІС€РёС…СЃСЏ РІ РІРёСЃРѕРєРѕСЃРЅС‹Р№ РіРѕРґ
+        // Поиск животных, родившихся в високосный год
         searchService.findLeapYearNames(animals);
 
-        // РџРѕРёСЃРє Р¶РёРІРѕС‚РЅС‹С…, РІРѕР·СЂР°СЃС‚ РєРѕС‚РѕСЂС‹С… СЃС‚Р°СЂС€Рµ N Р»РµС‚
+        // Поиск животных, возраст которых старше N лет
         searchService.findOlderAnimal(animals, 10);
 
-        // РџРѕРёСЃРє РґСѓР±Р»РёРєР°С‚РѕРІ Р¶РёРІРѕС‚РЅС‹С…
+        // Поиск дубликатов животных
         searchService.findDuplicate(animals);
     }
 
