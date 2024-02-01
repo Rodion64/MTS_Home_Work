@@ -5,7 +5,6 @@ import ru.mts.create.AnimalTypes;
 import ru.mts.create.CreateServiceAnimalFactoryImpl;
 import ru.mts.search.SearchService;
 import ru.mts.search.SearchServiceImpl;
-
 import java.lang.*;
 
 

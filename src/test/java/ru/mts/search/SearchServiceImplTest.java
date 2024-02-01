@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import ru.mts.animals.Animal;
 import ru.mts.animals.Dog;
+import java.lang.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

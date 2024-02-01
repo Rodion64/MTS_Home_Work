@@ -7,11 +7,11 @@ import ru.mts.animals.Animal;
  */
 public interface CreateService {
     /**
-     * Создает массив из n случайных животных
+     * РЎРѕР·РґР°РµС‚ РјР°СЃСЃРёРІ РёР· n СЃР»СѓС‡Р°Р№РЅС‹С… Р¶РёРІРѕС‚РЅС‹С…
      *
-     * @param n    количество животных в массиве
+     * @param n    РєРѕР»РёС‡РµСЃС‚РІРѕ Р¶РёРІРѕС‚РЅС‹С… РІ РјР°СЃСЃРёРІРµ
      * @param type the type
-     * @return массив животных
+     * @return РјР°СЃСЃРёРІ Р¶РёРІРѕС‚РЅС‹С…
      */
     Animal[] createAnimals(int n, AnimalTypes type);
 }

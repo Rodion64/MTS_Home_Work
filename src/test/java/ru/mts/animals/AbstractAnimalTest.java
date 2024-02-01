@@ -8,7 +8,7 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import ru.mts.animals.AbstractAnimal;
 import ru.mts.animals.Dog;
-
+import java.lang.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AbstractAnimalTest {
 
     @Test
-    @DisplayName("testEquals_Positive - проверяет корректность сравнения двух объектов Dog, которые имеют одинаковые значения всех полей")
+    @DisplayName("testEquals_Positive - РїСЂРѕРІРµСЂСЏРµС‚ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ СЃСЂР°РІРЅРµРЅРёСЏ РґРІСѓС… РѕР±СЉРµРєС‚РѕРІ Dog, РєРѕС‚РѕСЂС‹Рµ РёРјРµСЋС‚ РѕРґРёРЅР°РєРѕРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РІСЃРµС… РїРѕР»РµР№")
     public void testEquals_Positive() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         Dog dog1 = new Dog("Bulldog", "Max", new BigDecimal("1000.00"), "Friendly", birthday);
@@ -30,7 +30,7 @@ class AbstractAnimalTest {
 
 
     @Test
-    @DisplayName("testEquals_Negative_Breed - проверяет корректность сравнения двух объектов Dog, которые имеют разные значения поля breed;")
+    @DisplayName("testEquals_Negative_Breed - РїСЂРѕРІРµСЂСЏРµС‚ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ СЃСЂР°РІРЅРµРЅРёСЏ РґРІСѓС… РѕР±СЉРµРєС‚РѕРІ Dog, РєРѕС‚РѕСЂС‹Рµ РёРјРµСЋС‚ СЂР°Р·РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ breed;")
     public void testEquals_Negative_Breed() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         Dog dog1 = new Dog("Bulldog", "Max", new BigDecimal("1000.00"), "Friendly", birthday);
@@ -40,7 +40,7 @@ class AbstractAnimalTest {
     }
 
     @Test
-    @DisplayName("/*testEquals_Negative_Name - проверяет корректность сравнения двух объектов Dog, которые имеют разные значения поля name;*/")
+    @DisplayName("/*testEquals_Negative_Name - РїСЂРѕРІРµСЂСЏРµС‚ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ СЃСЂР°РІРЅРµРЅРёСЏ РґРІСѓС… РѕР±СЉРµРєС‚РѕРІ Dog, РєРѕС‚РѕСЂС‹Рµ РёРјРµСЋС‚ СЂР°Р·РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ name;*/")
     public void testEquals_Negative_Name() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         Dog dog1 = new Dog("Bulldog", "Max", new BigDecimal("1000.00"), "Friendly", birthday);
@@ -50,7 +50,7 @@ class AbstractAnimalTest {
     }
 
     @Test
-    @DisplayName("testEquals_Negative_Cost - проверяет корректность сравнения двух объектов Dog, которые имеют разные значения поля cost;")
+    @DisplayName("testEquals_Negative_Cost - РїСЂРѕРІРµСЂСЏРµС‚ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ СЃСЂР°РІРЅРµРЅРёСЏ РґРІСѓС… РѕР±СЉРµРєС‚РѕРІ Dog, РєРѕС‚РѕСЂС‹Рµ РёРјРµСЋС‚ СЂР°Р·РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ cost;")
     public void testEquals_Negative_Cost() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         Dog dog1 = new Dog("Bulldog", "Max", new BigDecimal("2000.00"), "Friendly", birthday);
@@ -60,7 +60,7 @@ class AbstractAnimalTest {
     }
 
     @Test
-    @DisplayName("testEquals_Negative_Character - проверяет корректность сравнения двух объектов Dog, которые имеют разные значения поля character;")
+    @DisplayName("testEquals_Negative_Character - РїСЂРѕРІРµСЂСЏРµС‚ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ СЃСЂР°РІРЅРµРЅРёСЏ РґРІСѓС… РѕР±СЉРµРєС‚РѕРІ Dog, РєРѕС‚РѕСЂС‹Рµ РёРјРµСЋС‚ СЂР°Р·РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ character;")
     public void testEquals_Negative_Character() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         Dog dog1 = new Dog("Bulldog", "Max", new BigDecimal("1000.00"), "Friendly2", birthday);
@@ -70,7 +70,7 @@ class AbstractAnimalTest {
     }
 
     @Test
-    @DisplayName("testEquals_Negative_Birthday - проверяет корректность сравнения двух объектов Dog, которые имеют разные значения поля birthday;")
+    @DisplayName("testEquals_Negative_Birthday - РїСЂРѕРІРµСЂСЏРµС‚ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ СЃСЂР°РІРЅРµРЅРёСЏ РґРІСѓС… РѕР±СЉРµРєС‚РѕРІ Dog, РєРѕС‚РѕСЂС‹Рµ РёРјРµСЋС‚ СЂР°Р·РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ birthday;")
     public void testEquals_Negative_Birthday() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         LocalDate birthday2 = LocalDate.of(2011, 1, 1);
@@ -81,7 +81,7 @@ class AbstractAnimalTest {
     }
 
     @Test
-    @DisplayName("testEquals_Null - проверяет, что при передаче в метод equals() значение null возвращает false;")
+    @DisplayName("testEquals_Null - РїСЂРѕРІРµСЂСЏРµС‚, С‡С‚Рѕ РїСЂРё РїРµСЂРµРґР°С‡Рµ РІ РјРµС‚РѕРґ equals() Р·РЅР°С‡РµРЅРёРµ null РІРѕР·РІСЂР°С‰Р°РµС‚ false;")
     public void testEquals_Null() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         Dog dog = new Dog("Bulldog", "Max", new BigDecimal("1000.00"), "Friendly", birthday);
@@ -89,7 +89,7 @@ class AbstractAnimalTest {
     }
 
     @Test
-    @DisplayName("testEquals_SameObject - проверяет, что при передаче в метод equals() ссылки на один и тот же объект возвращает true;")
+    @DisplayName("testEquals_SameObject - РїСЂРѕРІРµСЂСЏРµС‚, С‡С‚Рѕ РїСЂРё РїРµСЂРµРґР°С‡Рµ РІ РјРµС‚РѕРґ equals() СЃСЃС‹Р»РєРё РЅР° РѕРґРёРЅ Рё С‚РѕС‚ Р¶Рµ РѕР±СЉРµРєС‚ РІРѕР·РІСЂР°С‰Р°РµС‚ true;")
     public void testEquals_SameObject() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         Dog dog = new Dog("Bulldog", "Max", new BigDecimal("1000.00"), "Friendly", birthday);
@@ -98,7 +98,7 @@ class AbstractAnimalTest {
     }
 
     @Test
-    @DisplayName("testEquals_DifferentClass - проверяет, что при передаче в метод equals() объекта другого класса возвращает false.")
+    @DisplayName("testEquals_DifferentClass - РїСЂРѕРІРµСЂСЏРµС‚, С‡С‚Рѕ РїСЂРё РїРµСЂРµРґР°С‡Рµ РІ РјРµС‚РѕРґ equals() РѕР±СЉРµРєС‚Р° РґСЂСѓРіРѕРіРѕ РєР»Р°СЃСЃР° РІРѕР·РІСЂР°С‰Р°РµС‚ false.")
     public void testEquals_DifferentClass() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         Dog dog = new Dog("Bulldog", "Max", new BigDecimal("1000.00"), "Friendly", birthday);
@@ -108,7 +108,7 @@ class AbstractAnimalTest {
     }
 
     @Test
-    @DisplayName("testHashCodeWithSameFieldsReturnsTrue() - проверяет, что у объектов с одинаковыми полярми равный hashCode одинаковый")
+    @DisplayName("testHashCodeWithSameFieldsReturnsTrue() - РїСЂРѕРІРµСЂСЏРµС‚, С‡С‚Рѕ Сѓ РѕР±СЉРµРєС‚РѕРІ СЃ РѕРґРёРЅР°РєРѕРІС‹РјРё РїРѕР»СЏСЂРјРё СЂР°РІРЅС‹Р№ hashCode РѕРґРёРЅР°РєРѕРІС‹Р№")
     public void testHashCodeWithSameFieldsReturnsTrue() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         AbstractAnimal animal1 = new Dog("Bulldog", "Max", new BigDecimal("1000.00"), "Friendly", birthday);
@@ -119,7 +119,7 @@ class AbstractAnimalTest {
     }
 
     @Test
-    @DisplayName("testHashCodeWithDifferentFieldsReturnsFalse() - проверяет, что у объектов с разными полярми разный hashCode")
+    @DisplayName("testHashCodeWithDifferentFieldsReturnsFalse() - РїСЂРѕРІРµСЂСЏРµС‚, С‡С‚Рѕ Сѓ РѕР±СЉРµРєС‚РѕРІ СЃ СЂР°Р·РЅС‹РјРё РїРѕР»СЏСЂРјРё СЂР°Р·РЅС‹Р№ hashCode")
     public void testHashCodeWithDifferentFieldsReturnsFalse() {
         LocalDate birthday = LocalDate.of(2010, 1, 1);
         AbstractAnimal animal1 = new Dog("Bulldog", "Max", new BigDecimal("1000.00"), "Friendly", birthday);
