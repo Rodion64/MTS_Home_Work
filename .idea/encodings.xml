@@ -2,6 +2,17 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/Main.java" charset="windows-1251" />
-    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/search/SearchServiceImpl.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/animals/AbstractAnimal.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/animals/Animal.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/animals/Cat.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/animals/Dog.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/animals/Pet.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/animals/Predator.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/animals/Tiger.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/animals/Wolf.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/create/AnimalTypes.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/create/CreateService.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/mts/create/CreateServiceAnimalFactoryImpl.java" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/src/test/java/ru/mts/search/SearchServiceImplTest.java" charset="windows-1251" />
   </component>
 </project>
