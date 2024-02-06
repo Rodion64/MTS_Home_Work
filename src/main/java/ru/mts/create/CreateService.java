@@ -1,6 +1,6 @@
 package ru.mts.create;
 
-import ru.mts.animals.Animal;
+import ru.mts.entity.Animal;
 
 /**
  * The interface Create service.
@@ -14,4 +14,5 @@ public interface CreateService {
      * @return массив животных
      */
     Animal[] createAnimals(int n, AnimalTypes type);
+    Animal[] createAnimals();
 }

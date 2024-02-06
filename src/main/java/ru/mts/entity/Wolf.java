@@ -1,14 +1,15 @@
-package ru.mts.animals;
+package ru.mts.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * The type Dog.
+ * The type Wolf.
  */
-public class Dog extends Pet {
+public class Wolf extends Predator {
+
     /**
-     * Instantiates a new Dog.
+     * Instantiates a new Predator.
      *
      * @param breed     the breed
      * @param name      the name
@@ -16,13 +17,13 @@ public class Dog extends Pet {
      * @param character the character
      * @param birthday  the birthday
      */
-    public Dog(String breed, String name, BigDecimal cost, String character, LocalDate birthday) {
+    public Wolf(String breed, String name, BigDecimal cost, String character, LocalDate birthday) {
         super(breed, name, cost, character, birthday);
     }
 
     @Override
     public String toString() {
-        return "Dog{" +
+        return "Wolf{" +
                 "breed='" + breed + '\'' +
                 ", name='" + name + '\'' +
                 ", cost=" + cost +

@@ -1,17 +1,28 @@
-package ru.mts.search;
+package ru.mts.repository;
 
+import ru.mts.create.CreateServiceAnimalFactoryImpl;
+import ru.mts.entity.Animal;
 
-import ru.mts.animals.Animal;
-
+import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.*;
 
-/**
- * The type Search service.
- */
-public class SearchServiceImpl implements SearchService {
+public class AnimalsRepositoryImpl implements AnimalsRepository {
+    private Animal[] animals;
+    private final CreateServiceAnimalFactoryImpl createServiceAnimalFactory;
+
+
+    public AnimalsRepositoryImpl(CreateServiceAnimalFactoryImpl createServiceAnimalFactory) {
+        this.createServiceAnimalFactory = createServiceAnimalFactory;
+    }
+
+    @PostConstruct
+    public void init() {
+        animals =  createServiceAnimalFactory.createAnimals();
+    }
+
     @Override
-    public String[] findLeapYearNames(Animal[] animals) {
+    public String[] findLeapYearNames() {
         Optional<Animal[]> optionalObj = Optional.ofNullable(animals);
         optionalObj.orElseThrow(() -> new NullPointerException("Argument is null"));
         List<String> names = new ArrayList<>();
@@ -29,7 +40,7 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public Animal[] findOlderAnimal(Animal[] animals, int age) {
+    public Animal[] findOlderAnimal(int age) {
         if (age < 0) {
             throw new IllegalArgumentException(String.format("Incorrect arguments: [%s]", age));
         }
@@ -55,19 +66,30 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public void findDuplicate(Animal[] animals) {
-        Optional<Animal[]> optionalObj = Optional.ofNullable(animals);
-        optionalObj.orElseThrow(() -> new NullPointerException("Argument is null"));
-        Set<Animal> set = new HashSet<>();
-        int t = 0;
-        for (Animal animal : animals) {
-            if (!set.add(animal)) {
-                System.out.println("Дубликат: " + animal.getName());
-                t++;
+    public Set<Animal> findDuplicate() {
+
+        if (animals == null || animals.length == 0 || animals.length == 1) {
+            return new HashSet<Animal>();
+        }
+        Set<Animal> animalsSet = new HashSet<>();
+        for (int i = 0; i < animals.length; i++) {
+
+            for (int j = i + 1; j < animals.length; j++) {
+                if (animals[i].equals(animals[j])) {
+                    animalsSet.add(animals[i]);
+                }
             }
         }
-        if (t == 0) {
-            System.out.println("Дубликаты не найдены !");
+        return animalsSet;
+    }
+
+    @Override
+    public void printDuplicate() {
+        Set<Animal> set = findDuplicate();
+        if (set.isEmpty())
+            System.out.println("Дубликаты не найдены");
+        for (Animal animal : set) {
+            System.out.println("Дубликат: " + animal.getName());
         }
     }
 }

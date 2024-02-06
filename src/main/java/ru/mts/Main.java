@@ -1,27 +1,32 @@
 package ru.mts;
 
-import ru.mts.animals.Animal;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.mts.config.Config;
 import ru.mts.create.AnimalTypes;
 import ru.mts.create.CreateServiceAnimalFactoryImpl;
-import ru.mts.search.SearchService;
-import ru.mts.search.SearchServiceImpl;
+import ru.mts.repository.AnimalsRepository;
+import ru.mts.repository.AnimalsRepositoryImpl;
+
+
+import java.util.Arrays;
 
 
 public class Main {
     public static void main(String[] args) {
-        CreateServiceAnimalFactoryImpl animalFactory = new CreateServiceAnimalFactoryImpl();
-        Animal[] animals = animalFactory.createAnimals(10, AnimalTypes.WOLF);
-        animalFactory.printAnimals(animals);
-        SearchService searchService = new SearchServiceImpl();
+        ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+        AnimalsRepository animalsRepository = context.getBean(AnimalsRepositoryImpl.class);
 
-        // Поиск животных, родившихся в високосный год
-        searchService.findLeapYearNames(animals);
 
-        // Поиск животных, возраст которых старше N лет
-        searchService.findOlderAnimal(animals, 10);
+        animalsRepository.findLeapYearNames();
+        System.out.println();
 
-        // Поиск дубликатов животных
-        searchService.findDuplicate(animals);
+        int age = 5;
+        animalsRepository.findOlderAnimal(age);
+        System.out.println();
+
+
+        animalsRepository.printDuplicate();
     }
 
 }
