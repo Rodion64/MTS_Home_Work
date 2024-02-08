@@ -3,11 +3,8 @@ package ru.mts;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.mts.config.Config;
-import ru.mts.create.AnimalTypes;
-import ru.mts.create.CreateServiceAnimalFactoryImpl;
 import ru.mts.repository.AnimalsRepository;
 import ru.mts.repository.AnimalsRepositoryImpl;
-
 
 import java.util.Arrays;
 
@@ -25,6 +22,8 @@ public class Main {
         animalsRepository.findOlderAnimal(age);
         System.out.println();
 
+        System.out.println(Arrays.toString(animalsRepository.findDuplicate().stream().toArray()));
+        System.out.println();
 
         animalsRepository.printDuplicate();
     }

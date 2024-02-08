@@ -23,7 +23,6 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
     }
 
 
-
     @Override
     public Animal[] createAnimals() {
 
