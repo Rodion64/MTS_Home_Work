@@ -1,9 +1,10 @@
-package ru.mts.animals;
+package ru.mts.entity;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 import java.time.LocalDate;
+import java.lang.*;
 
 /**
  * The type Abstract animal.

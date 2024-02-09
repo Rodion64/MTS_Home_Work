@@ -1,5 +1,7 @@
 package ru.mts.create;
 
+import java.util.Random;
+
 /**
  * The enum Animal types.
  */
@@ -19,5 +21,9 @@ public enum AnimalTypes {
     /**
      * Tiger animal types.
      */
-    TIGER
+    TIGER;
+
+    public static AnimalTypes randomAnimalTypes() {
+        return AnimalTypes.values()[new Random().nextInt(AnimalTypes.values().length)];
+    }
 }

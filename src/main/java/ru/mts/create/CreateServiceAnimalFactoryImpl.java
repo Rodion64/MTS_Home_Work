@@ -1,6 +1,7 @@
 package ru.mts.create;
 
-import ru.mts.animals.*;
+import org.springframework.stereotype.Component;
+import ru.mts.entity.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -12,7 +13,51 @@ import java.util.Random;
 /**
  * The type Create service animal factory.
  */
+@Component
 public class CreateServiceAnimalFactoryImpl implements CreateService {
+
+    private AnimalTypes animalType;
+
+    public void setAnimalType(AnimalTypes animalType) {
+        this.animalType = animalType;
+    }
+
+
+    @Override
+    public Animal[] createAnimals() {
+
+        int n = 10;
+        Animal[] animals = new Animal[n];
+        Random random = new Random();
+
+        for (int i = 0; i < n; i++) {
+            String name = generateName(random);
+            BigDecimal cost = BigDecimal.valueOf(random.nextDouble() * 1000);
+            String character = generateCharacter(random);
+            LocalDate birthday = generateBirthDate(random);
+            Animal animal = null;
+            switch (animalType) {
+                case CAT:
+                    String breedCat = generateBreedCat(random);
+                    animal = new Cat(breedCat, name, cost, character, birthday);
+                    break;
+                case WOLF:
+                    String breedWolf = generateBreedWolf(random);
+                    animal = new Wolf(breedWolf, name, cost, character, birthday);
+                    break;
+                case DOG:
+                    String breedDog = generateBreedDog(random);
+                    animal = new Dog(breedDog, name, cost, character, birthday);
+                    break;
+                case TIGER:
+                    String breedTiger = generateBreedTiger(random);
+                    animal = new Tiger(breedTiger, name, cost, character, birthday);
+            }
+            animals[i] = animal;
+        }
+
+        return animals;
+    }
 
     @Override
     public Animal[] createAnimals(int n, AnimalTypes type) {
