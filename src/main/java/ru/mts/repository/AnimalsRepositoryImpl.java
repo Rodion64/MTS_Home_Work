@@ -1,5 +1,6 @@
 package ru.mts.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.mts.create.CreateServiceAnimalFactoryImpl;
 import ru.mts.entity.Animal;
 
@@ -7,6 +8,7 @@ import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.*;
 
+@Repository
 public class AnimalsRepositoryImpl implements AnimalsRepository {
     private Animal[] animals;
     private final CreateServiceAnimalFactoryImpl createServiceAnimalFactory;
@@ -18,7 +20,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
 
     @PostConstruct
     public void init() {
-        animals =  createServiceAnimalFactory.createAnimals();
+        animals = createServiceAnimalFactory.createAnimals();
     }
 
     @Override
@@ -32,7 +34,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
                 names.add(animal.getName());
             }
         }
-        System.out.println("Животные, родившиеся в високосный год:");
+        System.out.println("Animals born in spring:");
         for (String name : names) {
             System.out.println(name);
         }
@@ -58,7 +60,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
                 olderAnimals.add(animal);
             }
         }
-        System.out.printf("Животные, возраст которых старше %s лет:%n", age);
+        System.out.printf("Animals are older ", age);
         for (Animal animal : olderAnimals) {
             System.out.println(animal.getName() + " (" + animal.getBirthday().getYear() + ")");
         }
@@ -87,9 +89,9 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     public void printDuplicate() {
         Set<Animal> set = findDuplicate();
         if (set.isEmpty())
-            System.out.println("Дубликаты не найдены");
+            System.out.println("No duplicates found");
         for (Animal animal : set) {
-            System.out.println("Дубликат: " + animal.getName());
+            System.out.println("Duplicates: " + animal.getName());
         }
     }
 }

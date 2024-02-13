@@ -1,5 +1,6 @@
 package ru.mts.create;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import ru.mts.entity.*;
 
@@ -8,7 +9,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Random;
-
 
 /**
  * The type Create service animal factory.
@@ -22,6 +22,9 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
         this.animalType = animalType;
     }
 
+    @Value("${names}")
+    String[] names;
+
 
     @Override
     public Animal[] createAnimals() {
@@ -31,7 +34,7 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
         Random random = new Random();
 
         for (int i = 0; i < n; i++) {
-            String name = generateName(random);
+            String name = generateName(random, names);
             BigDecimal cost = BigDecimal.valueOf(random.nextDouble() * 1000);
             String character = generateCharacter(random);
             LocalDate birthday = generateBirthDate(random);
@@ -70,7 +73,7 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
         Random random = new Random();
 
         for (int i = 0; i < n; i++) {
-            String name = generateName(random);
+            String name = generateName(random, names);
             BigDecimal cost = BigDecimal.valueOf(random.nextDouble() * 1000);
             String character = generateCharacter(random);
             LocalDate birthday = generateBirthDate(random);
@@ -109,33 +112,33 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
         Arrays.stream(animals).forEach(s -> System.out.println(s.toString()));
     }
 
-    private String generateName(Random random) {
-        String[] names = {"Барсик", "Мурзик", "Рыжик", "Томас", "Симба", "Леопольд", "Тайгер", "Шерхан", "Жасмин", "Маркиза", "Мистер Бигглзворт", "Базилио", "Кузьма", "Арчи", "Феликс", "Гарфилд", "Чарли", "Рокки", "Бобик", "Шарик", "Тузик", "Дружок", "Рекс", "Ласка", "Зевс", "Аполлон", "Тор", "Халк", "Локи", "Геркулес"};
+    private String generateName(Random random, String[] names) {
+
         return names[random.nextInt(names.length)];
     }
 
     private String generateCharacter(Random random) {
-        String[] characters = {"Дружелюбный", "Агрессивный", "Ленивый", "Активный", "Умный", "Глупый", "Спокойный", "Нервный", "Любопытный", "Независимый"};
+        String[] characters = {"Friendly", "Aggressive", "Lazy", "Active", "Smart", "Stupid", "Calm", "Nervous", "Curious", "Independent"};
         return characters[random.nextInt(characters.length)];
     }
 
     private String generateBreedCat(Random random) {
-        String[] catBreeds = {"Сиамская", "Британская короткошерстная", "Персидская", "Шотландская вислоухая", "Мейн-кун", "Бенгальская", "Сфинкс", "Русская голубая", "Американская жесткошерстная", "Саванна"};
+        String[] catBreeds = {"Siamese", "British Shorthair", "Persian", "Scottish Fold", "Maine Coon", "Bengal", "Sphynx", "Russian Blue", "American Wirehair", "Savannah"};
         return catBreeds[random.nextInt(catBreeds.length)];
     }
 
     private String generateBreedWolf(Random random) {
-        String[] wolfBreeds = {"Серый волк", "Красный волк", "Арктический волк", "Мексиканский волк", "Белый волк", "Евразийский волк", "Черный волк", "Рыжий волк", "Серый волк", "Тунгусский волк"};
+        String[] wolfBreeds = {"Gray wolf", "Red wolf", "Arctic wolf", "Mexican wolf", "White wolf", "Eurasian wolf", "Black wolf", "Red wolf", "Grey wolf", "Tunguska wolf"};
         return wolfBreeds[random.nextInt(wolfBreeds.length)];
     }
 
     private String generateBreedTiger(Random random) {
-        String[] tigerBreeds = {"Бенгальский тигр", "Суматранский тигр", "Амурский тигр", "Малайский тигр", "Вьетнамский тигр", "Китайский тигр", "Корейский тигр", "Балийский тигр", "Яванский тигр", "Каспийский тигр"};
+        String[] tigerBreeds = {"Bengal tiger", "Sumatran tiger", "Siberian tiger", "Malayan tiger", "Vietnamese tiger", "Chinese tiger", "Korean tiger", "Bali tiger", "Javanese tiger", "Caspian tiger"};
         return tigerBreeds[random.nextInt(tigerBreeds.length)];
     }
 
     private String generateBreedDog(Random random) {
-        String[] dogBreeds = {"Лабрадор ретривер", "Немецкая овчарка", "Французский бульдог", "Бигль", "Джек Рассел терьер", "Ши-тцу", "Йоркширский терьер", "Чихуахуа", "Доберман", "Ротвейлер"};
+        String[] dogBreeds = {"Labrador Retriever", "German Shepherd", "French Bulldog", "Beagle", "Jack Russell Terrier", "Shih Tzu", "Yorkshire Terrier", "Chihuahua", "Doberman", "Rottweiler"};
         return dogBreeds[random.nextInt(dogBreeds.length)];
     }
 
