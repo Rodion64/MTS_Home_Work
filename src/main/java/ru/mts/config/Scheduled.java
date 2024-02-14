@@ -20,7 +20,7 @@ public class Scheduled {
         System.out.println(Arrays.toString(animalsRepository.findLeapYearNames()));
         System.out.println();
 
-        int age = 0;
+        int age = 1;
         System.out.println(Arrays.toString(animalsRepository.findOlderAnimal(age)));
         System.out.println();
 

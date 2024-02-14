@@ -60,7 +60,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
                 olderAnimals.add(animal);
             }
         }
-        System.out.printf("Animals are older ", age);
+        System.out.printf("Animals are older %s years ", age);
         for (Animal animal : olderAnimals) {
             System.out.println(animal.getName() + " (" + animal.getBirthday().getYear() + ")");
         }
