@@ -34,7 +34,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
                 names.add(animal.getName());
             }
         }
-        System.out.println("Animals born in spring:");
+        System.out.println("Animals born in the leap year:");
         for (String name : names) {
             System.out.println(name);
         }

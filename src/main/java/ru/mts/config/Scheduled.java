@@ -17,11 +17,11 @@ public class Scheduled {
 
     @org.springframework.scheduling.annotation.Scheduled(fixedRate = 60000)
     public void doMain() {
-        System.out.println(Arrays.toString(animalsRepository.findLeapYearNames()));
+        animalsRepository.findLeapYearNames();
         System.out.println();
 
         int age = 1;
-        System.out.println(Arrays.toString(animalsRepository.findOlderAnimal(age)));
+        animalsRepository.findOlderAnimal(age);
         System.out.println();
 
         System.out.println(Arrays.toString(animalsRepository.findDuplicate().stream().toArray()));

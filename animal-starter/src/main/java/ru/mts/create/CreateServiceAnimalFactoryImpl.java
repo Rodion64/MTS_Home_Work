@@ -1,6 +1,7 @@
 package ru.mts.create;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.mts.entity.*;
 
@@ -14,6 +15,7 @@ import java.util.Random;
  * The type Create service animal factory.
  */
 @Component
+@Scope(value = "prototype")
 public class CreateServiceAnimalFactoryImpl implements CreateService {
 
     private AnimalTypes animalType;
