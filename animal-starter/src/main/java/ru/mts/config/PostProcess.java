@@ -10,7 +10,7 @@ import ru.mts.create.CreateServiceAnimalFactoryImpl;
 
 @Configuration
 @ComponentScan(basePackages = "ru.mts")
-public class StarterConfig implements BeanPostProcessor {
+public class PostProcess implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         if (bean instanceof CreateServiceAnimalFactoryImpl) {
