@@ -1,14 +1,15 @@
-
 package ru.mts.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.mts.repository.AnimalsRepositoryImpl;
 
 import java.util.Arrays;
 
-@Component
+@Service
 public class AnimalScheduled {
+    @Autowired
     private final AnimalsRepositoryImpl animalsRepository;
 
     public AnimalScheduled(AnimalsRepositoryImpl animalsRepository) {
@@ -16,7 +17,7 @@ public class AnimalScheduled {
     }
 
 
-    @Scheduled( fixedDelayString = "${fixedRate}")
+    @Scheduled(fixedRateString = "${application.scheduler.time}")
     public void doMain() {
         animalsRepository.findLeapYearNames();
         System.out.println();
