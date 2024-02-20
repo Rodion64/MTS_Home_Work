@@ -22,7 +22,7 @@ public class AnimalScheduled {
         animalsRepository.findLeapYearNames();
         System.out.println();
 
-        int age = 1;
+        int age = 3;
         animalsRepository.findOlderAnimal(age);
         System.out.println();
 

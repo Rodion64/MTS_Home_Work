@@ -13,7 +13,6 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     private Animal[] animals;
     private final CreateServiceAnimalFactoryImpl createServiceAnimalFactory;
 
-
     public AnimalsRepositoryImpl(CreateServiceAnimalFactoryImpl createServiceAnimalFactory) {
         this.createServiceAnimalFactory = createServiceAnimalFactory;
     }
@@ -44,7 +43,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     @Override
     public Animal[] findOlderAnimal(int age) {
         if (age < 0) {
-            throw new IllegalArgumentException(String.format("Incorrect arguments: [%s]", age));
+            throw new IllegalArgumentException(String.format("Incorrect arguments: [%s]", age) + "/n");
         }
         Optional<Animal[]> optionalObj = Optional.ofNullable(animals);
         optionalObj.orElseThrow(() -> new NullPointerException("Argument is null"));

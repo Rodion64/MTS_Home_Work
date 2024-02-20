@@ -14,8 +14,7 @@ import java.util.Random;
 /**
  * The type Create service animal factory.
  */
-@Component
-@Scope(value = "prototype")
+
 public class CreateServiceAnimalFactoryImpl implements CreateService {
 
     private AnimalTypes animalType;
