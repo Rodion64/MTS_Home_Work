@@ -31,9 +31,7 @@ class AnimalsRepositoryImplTest {
     @Test
     @DisplayName("Тест работу метода findLeapYearNames в негативном сценарии")
     public void findLeapYearNamesTestNegtive() {
-
         String[] leapYearNames = animalsRepository.findLeapYearNames();
-
         Assertions.assertNotEquals(0, leapYearNames.length);
     }
 
