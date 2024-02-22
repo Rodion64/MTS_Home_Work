@@ -16,7 +16,6 @@ import java.time.LocalDate;
 
 @Profile("test")
 @TestConfiguration
-
 public class MockConfiguration {
     @Bean
     @Primary
@@ -30,8 +29,6 @@ public class MockConfiguration {
                 new Dog("Bulldog", "Myrsik", new BigDecimal("1000.00"), "Friendly", birthday),
                 new Wolf("Red wolf", "Tomas", new BigDecimal("1000.00"), "Friendly", birthday2),
                 new Wolf("Red wolf", "Tomas", new BigDecimal("1000.00"), "Friendly", birthday2)};
-
-
         Mockito.when(mock.createAnimals()).thenReturn(animals);
         return mock;
     }

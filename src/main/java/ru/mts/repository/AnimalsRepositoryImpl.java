@@ -43,7 +43,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     @Override
     public Animal[] findOlderAnimal(int age) {
         if (age < 0) {
-            throw new IllegalArgumentException(String.format("Incorrect arguments: [%s]", age) + "/n");
+            throw new IllegalArgumentException(String.format("Incorrect arguments: [%s]/n", age));
         }
         Optional<Animal[]> optionalObj = Optional.ofNullable(animals);
         optionalObj.orElseThrow(() -> new NullPointerException("Argument is null"));

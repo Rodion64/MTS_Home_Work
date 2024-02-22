@@ -15,9 +15,8 @@ import ru.mts.entity.Animal;
 @ActiveProfiles("test")
 @Import(MockConfiguration.class)
 class AnimalsRepositoryImplTest {
-
     @Autowired
-    AnimalsRepositoryImpl animalsRepository;
+    AnimalsRepository animalsRepository;
 
     @Test
     @DisplayName("Тест работу findLeapYearNames в поизитовном сценарии")
