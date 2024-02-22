@@ -32,11 +32,17 @@ public class AnimalStarterTest {
     @DisplayName("Тест на коректность присваемого имени животного из application.properties")
     public void testAnimalNames() {
         Animal[] animals = createService.createAnimals();
+        boolean flag = false;
         String[] names = {"Barsik", "Myrsik", "Rizik", "Tomas", "Simba", "Leo", "Sherchan", "Marciz", "Mister", "Bazilio", "Kyzma"};
         for (Animal animal : animals) {
-            if (animal.getName().equals(Arrays.stream(names).findAny()) == true)
-                assertTrue(true);
+            for (int i = 0; i < names.length; i++) {
+                if (animal.getName().equals(names[i])){
+                    flag = true;
+                    break;
+                }
+            }
         }
+        assertEquals(flag, true);
     }
 
     @Test
