@@ -10,6 +10,9 @@ import org.springframework.test.context.ActiveProfiles;
 import ru.mts.config.MockConfiguration;
 import ru.mts.entity.Animal;
 
+import java.time.LocalDate;
+import java.util.Map;
+
 
 @SpringBootTest(classes = AnimalsRepositoryImpl.class)
 @ActiveProfiles("test")
@@ -21,25 +24,26 @@ class AnimalsRepositoryImplTest {
     @Test
     @DisplayName("Тест работу findLeapYearNames в поизитовном сценарии")
     public void findLeapYearNamesTest() {
-
-        String[] leapYearNames = animalsRepository.findLeapYearNames();
-
-        Assertions.assertEquals(2, leapYearNames.length);
+        Map<String, LocalDate> leapYearNames = animalsRepository.findLeapYearNames();
+        System.out.println(leapYearNames.toString());
+        Assertions.assertEquals(2, leapYearNames.size());
     }
 
     @Test
     @DisplayName("Тест работу метода findLeapYearNames в негативном сценарии")
     public void findLeapYearNamesTestNegtive() {
-        String[] leapYearNames = animalsRepository.findLeapYearNames();
-        Assertions.assertNotEquals(0, leapYearNames.length);
+        Map<String, LocalDate> leapYearNames = animalsRepository.findLeapYearNames();
+        System.out.println(leapYearNames.toString());
+        Assertions.assertNotEquals(0, leapYearNames.size());
     }
 
     @Test
     @DisplayName("Тест метода findOlderAnimalTest")
     public void findOlderAnimalTest() {
-        int age = 11;
-        Animal[] olderAnimal = animalsRepository.findOlderAnimal(age);
-        Assertions.assertEquals(2, olderAnimal.length);
+        int age = 12;
+        Map<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
+        System.out.println(olderAnimal.toString());
+        Assertions.assertEquals(2, olderAnimal.size());
     }
 
     @Test
@@ -49,10 +53,20 @@ class AnimalsRepositoryImplTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> animalsRepository.findOlderAnimal(age));
     }
 
+    @Test
+    @DisplayName("Тест метода findOlderAnimalTest с выводом самого старшего животного")
+    public void findOlderAnimalTes() throws IllegalArgumentException {
+        int age = 50;
+        Map<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
+        System.out.println(olderAnimal.toString());
+        Assertions.assertEquals(1, olderAnimal.size());
+    }
+
 
     @Test
     @DisplayName("Тест на поиск дубликатов методом findDuplicate")
     public void findDuplicate() {
+        System.out.println(animalsRepository.findDuplicate().toString());
         Assertions.assertEquals(2, animalsRepository.findDuplicate().size());
 
     }
@@ -62,5 +76,6 @@ class AnimalsRepositoryImplTest {
     public void printDuplicate() {
         animalsRepository.printDuplicate();
     }
+
 
 }

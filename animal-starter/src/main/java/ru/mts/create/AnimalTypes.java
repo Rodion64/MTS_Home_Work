@@ -9,19 +9,19 @@ public enum AnimalTypes {
     /**
      * Cat animal types.
      */
-    CAT,
+    Cat,
     /**
      * Wolf animal types.
      */
-    WOLF,
+    Wolf,
     /**
      * Dog animal types.
      */
-    DOG,
+    Dog,
     /**
      * Tiger animal types.
      */
-    TIGER;
+    Tiger;
 
     public static AnimalTypes randomAnimalTypes() {
         return AnimalTypes.values()[new Random().nextInt(AnimalTypes.values().length)];

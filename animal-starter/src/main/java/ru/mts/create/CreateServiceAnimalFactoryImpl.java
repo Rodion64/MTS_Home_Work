@@ -7,14 +7,11 @@ import ru.mts.entity.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 /**
  * The type Create service animal factory.
  */
-
 public class CreateServiceAnimalFactoryImpl implements CreateService {
 
     private AnimalTypes animalType;
@@ -28,91 +25,48 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
 
 
     @Override
-    public Animal[] createAnimals() {
-
+    public Map<String, List<Animal>> createAnimals() {
         int n = 10;
-        Animal[] animals = new Animal[n];
+        Map<String, List<Animal>> animals = new HashMap<>();
         Random random = new Random();
-
         for (int i = 0; i < n; i++) {
             String name = generateName(random, names);
             BigDecimal cost = BigDecimal.valueOf(random.nextDouble() * 1000);
             String character = generateCharacter(random);
             LocalDate birthday = generateBirthDate(random);
-            Animal animal = null;
+            List<Animal> animal = null;
             switch (animalType) {
-                case CAT:
+                case Cat:
                     String breedCat = generateBreedCat(random);
-                    animal = new Cat(breedCat, name, cost, character, birthday);
+                    animals.putIfAbsent(animalType.toString(), new ArrayList<>());
+                    animals.get(animalType.toString()).add(new Cat(breedCat, name, cost, character, birthday));
                     break;
-                case WOLF:
+                case Wolf:
                     String breedWolf = generateBreedWolf(random);
-                    animal = new Wolf(breedWolf, name, cost, character, birthday);
+                    animals.putIfAbsent(animalType.toString(), new ArrayList<>());
+                    animals.get(animalType.toString()).add(new Wolf(breedWolf, name, cost, character, birthday));
                     break;
-                case DOG:
+                case Dog:
                     String breedDog = generateBreedDog(random);
-                    animal = new Dog(breedDog, name, cost, character, birthday);
+                    animals.putIfAbsent(animalType.toString(), new ArrayList<>());
+                    animals.get(animalType.toString()).add(new Dog(breedDog, name, cost, character, birthday));
                     break;
-                case TIGER:
+                case Tiger:
                     String breedTiger = generateBreedTiger(random);
-                    animal = new Tiger(breedTiger, name, cost, character, birthday);
+                    animals.putIfAbsent(animalType.toString(), new ArrayList<>());
+                    animals.get(animalType.toString()).add(new Tiger(breedTiger, name, cost, character, birthday));
             }
-            animals[i] = animal;
-        }
 
+        }
         return animals;
     }
 
-    @Override
-    public Animal[] createAnimals(int n, AnimalTypes type) {
-        if (n < 0) {
-            throw new IllegalArgumentException(String.format("Incorrect arguments: [%s, AnimalTypes type]", n));
-        }
-        Optional<AnimalTypes> optionalObj = Optional.ofNullable(type);
-        optionalObj.orElseThrow(() -> new NullPointerException(String.format("Argument is null: [%s, %s]", n, type)));
-        Animal[] animals = new Animal[n];
-        Random random = new Random();
 
-        for (int i = 0; i < n; i++) {
-            String name = generateName(random, names);
-            BigDecimal cost = BigDecimal.valueOf(random.nextDouble() * 1000);
-            String character = generateCharacter(random);
-            LocalDate birthday = generateBirthDate(random);
-            Animal animal = null;
-            switch (type) {
-                case CAT:
-                    String breedCat = generateBreedCat(random);
-                    animal = new Cat(breedCat, name, cost, character, birthday);
-                    break;
-                case WOLF:
-                    String breedWolf = generateBreedWolf(random);
-                    animal = new Wolf(breedWolf, name, cost, character, birthday);
-                    break;
-                case DOG:
-                    String breedDog = generateBreedDog(random);
-                    animal = new Dog(breedDog, name, cost, character, birthday);
-                    break;
-                case TIGER:
-                    String breedTiger = generateBreedTiger(random);
-                    animal = new Tiger(breedTiger, name, cost, character, birthday);
-            }
-            animals[i] = animal;
-        }
-
-        return animals;
-    }
-
-    /**
-     * Print animals.
-     *
-     * @param animals the animals
-     */
     public void printAnimals(Animal[] animals) {
         Optional<Animal[]> optionalObj = Optional.ofNullable(animals);
         optionalObj.orElseThrow(() -> new NullPointerException(String.format("Argument is null")));
         Arrays.stream(animals).forEach(s -> System.out.println(s.toString()));
     }
-
     private String generateName(Random random, String[] names) {
 
         return names[random.nextInt(names.length)];
