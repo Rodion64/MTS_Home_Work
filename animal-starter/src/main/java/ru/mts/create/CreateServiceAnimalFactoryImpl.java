@@ -27,46 +27,57 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
     @Override
     public Map<String, List<Animal>> createAnimals() {
         int n = 10;
-        Map<String, List<Animal>> animals = new HashMap<>();
-        Random random = new Random();
+        Map<String, List<Animal>> animalsMap = new HashMap<>();
+        List<Animal> cats = new ArrayList<>();
+        animalsMap.put("Cat", cats);
+        List<Animal> wolfs = new ArrayList<>();
+        animalsMap.put("Wolf", wolfs);
+        List<Animal> dogs = new ArrayList<>();
+        animalsMap.put("Dog", dogs);
+        List<Animal> tigers = new ArrayList<>();
+        animalsMap.put("Tiger", tigers);
+        List<Animal> animals = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            String name = generateName(random, names);
-            BigDecimal cost = BigDecimal.valueOf(random.nextDouble() * 1000);
-            String character = generateCharacter(random);
-            LocalDate birthday = generateBirthDate(random);
-            List<Animal> animal = null;
-            switch (animalType) {
-                case Cat:
-                    String breedCat = generateBreedCat(random);
-                    animals.putIfAbsent(animalType.toString(), new ArrayList<>());
-                    animals.get(animalType.toString()).add(new Cat(breedCat, name, cost, character, birthday));
-                    break;
-                case Wolf:
-                    String breedWolf = generateBreedWolf(random);
-                    animals.putIfAbsent(animalType.toString(), new ArrayList<>());
-                    animals.get(animalType.toString()).add(new Wolf(breedWolf, name, cost, character, birthday));
-                    break;
-                case Dog:
-                    String breedDog = generateBreedDog(random);
-                    animals.putIfAbsent(animalType.toString(), new ArrayList<>());
-                    animals.get(animalType.toString()).add(new Dog(breedDog, name, cost, character, birthday));
-                    break;
-                case Tiger:
-                    String breedTiger = generateBreedTiger(random);
-                    animals.putIfAbsent(animalType.toString(), new ArrayList<>());
-                    animals.get(animalType.toString()).add(new Tiger(breedTiger, name, cost, character, birthday));
-            }
-
+            Animal animal = createAnimal(animalType);
+            animals.add(animal);
         }
-        return animals;
+        animalsMap.put(animalType.toString(), animals);
+        return animalsMap;
     }
 
+    private Animal createAnimal(AnimalTypes animalType) {
+        Random random = new Random();
+        String name = generateName(random, names);
+        BigDecimal cost = BigDecimal.valueOf(random.nextDouble() * 1000);
+        String character = generateCharacter(random);
+        LocalDate birthday = generateBirthDate(random);
+        String breedCat = generateBreedCat(random);
+        String breedWolf = generateBreedWolf(random);
+        String breedDog = generateBreedDog(random);
+        String breedTiger = generateBreedTiger(random);
+        Animal animal = null;
+        switch (animalType) {
+            case CAT:
+                animal =  new Cat(breedCat, name, cost, character, birthday);
+                break;
+            case WOLF:
+               animal = new Wolf(breedWolf, name, cost, character, birthday);
+                break;
+            case DOG:
+               animal = new Dog(breedDog, name, cost, character, birthday);
+                break;
+            case TIGER:
+                animal = new Tiger(breedTiger, name, cost, character, birthday);
+        }
+        return animal;
+    }
 
     public void printAnimals(Animal[] animals) {
         Optional<Animal[]> optionalObj = Optional.ofNullable(animals);
         optionalObj.orElseThrow(() -> new NullPointerException(String.format("Argument is null")));
         Arrays.stream(animals).forEach(s -> System.out.println(s.toString()));
     }
+
     private String generateName(Random random, String[] names) {
 
         return names[random.nextInt(names.length)];

@@ -22,7 +22,7 @@ public class AnimalScheduled {
 
         System.out.println(animalsRepository.findLeapYearNames().toString());
         System.out.println("-------------------------");
-        System.out.println(animalsRepository.findOlderAnimal(7).toString());
+        System.out.println(animalsRepository.findOlderAnimal(0).toString());
         System.out.println("-------------------------");
         System.out.println(animalsRepository.findDuplicate());
         System.out.println("-------------------------");

@@ -72,13 +72,13 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     @Override
     public Map<String, Integer> findDuplicate() {
         int i;
-        Set<Animal> setAnimals = new HashSet<>();
+        Set<Animal> AnimalsSet = new HashSet<>();
         Map<String, Integer> duplicate = new HashMap<>();
         for (Map.Entry<String, List<Animal>> animalEntry : animals.entrySet()) {
             String animalType = animalEntry.getKey();
             List<Animal> animalList = animalEntry.getValue();
             for (Animal animal : animalList) {
-                if (!setAnimals.add(animal)) {
+                if (!AnimalsSet.add(animal)) {
                     if (duplicate.get(animalType) == null) {
                         i = 1;
                     } else {
