@@ -41,7 +41,7 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
             Animal animal = createAnimal(animalType);
             animals.add(animal);
         }
-        animalsMap.put(animalType.toString(), animals);
+        animalsMap.put(animals.getClass().getSimpleName(), animals);
         return animalsMap;
     }
 
