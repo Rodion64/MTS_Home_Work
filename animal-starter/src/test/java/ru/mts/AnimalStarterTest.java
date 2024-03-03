@@ -10,6 +10,8 @@ import ru.mts.create.CreateServiceAnimalFactoryImpl;
 import ru.mts.entity.*;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,26 +24,32 @@ public class AnimalStarterTest {
     @Test
     @DisplayName("Тест на соответсвие типа создаваемого животного")
     public void testAnimalType() {
-        Animal[] animals = createService.createAnimals();
-        for (Animal animal : animals) {
-            assertTrue(animal instanceof Cat || animal instanceof Wolf || animal instanceof Dog || animal instanceof Tiger);
+        Map<String, List<Animal>> animals = createService.createAnimals();
+        for (Map.Entry<String, List<Animal>> animalEntry : animals.entrySet()) {
+            List<Animal> animalList = animalEntry.getValue();
+            for (Animal animal : animalList) {
+                assertTrue(animal instanceof Cat || animal instanceof Wolf || animal instanceof Dog || animal instanceof Tiger);
+            }
         }
     }
 
     @Test
     @DisplayName("Тест на коректность присваемого имени животного из application.properties")
     public void testAnimalNames() {
-        Animal[] animals = createService.createAnimals();
+        Map<String, List<Animal>> animals = createService.createAnimals();
         boolean flag = false;
         String[] names = {"Barsik", "Myrsik", "Rizik", "Tomas", "Simba", "Leo", "Sherchan", "Marciz", "Mister", "Bazilio", "Kyzma"};
-        for (Animal animal : animals) {
-            for (int i = 0; i < names.length; i++) {
-                if (animal.getName().equals(names[i])){
+        for (List<Animal> animal : animals.values()) {
+            for (int i = 0; i < animal.size(); i++) {
+                if (animal.get(i).getName().equals(names[i])) {
                     flag = true;
+                    System.out.println(animal.get(i).toString());
                     break;
                 }
             }
         }
+        System.out.println(animals.toString());
+
         assertEquals(flag, true);
     }
 
@@ -59,5 +67,6 @@ public class AnimalStarterTest {
         assertThrows(NullPointerException.class,
                 () -> createService.createAnimals());
     }
+
 
 }

@@ -19,16 +19,15 @@ public class AnimalScheduled {
 
     @Scheduled(fixedRateString = "${application.scheduler.time}")
     public void doMain() {
-        animalsRepository.findLeapYearNames();
-        System.out.println();
 
-        int age = 3;
-        animalsRepository.findOlderAnimal(age);
-        System.out.println();
-
-        System.out.println(Arrays.toString(animalsRepository.findDuplicate().stream().toArray()));
-        System.out.println();
-
+        System.out.println(animalsRepository.findLeapYearNames().toString());
+        System.out.println("-------------------------");
+        System.out.println(animalsRepository.findOlderAnimal(0).toString());
+        System.out.println("-------------------------");
+        System.out.println(animalsRepository.findDuplicate());
+        System.out.println("-------------------------");
         animalsRepository.printDuplicate();
+
+
     }
 }

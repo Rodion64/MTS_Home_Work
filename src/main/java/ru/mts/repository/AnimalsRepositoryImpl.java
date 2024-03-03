@@ -10,7 +10,7 @@ import java.util.*;
 
 @Repository
 public class AnimalsRepositoryImpl implements AnimalsRepository {
-    private Animal[] animals;
+    private Map<String, List<Animal>> animals;
     private final CreateServiceAnimalFactoryImpl createServiceAnimalFactory;
 
     public AnimalsRepositoryImpl(CreateServiceAnimalFactoryImpl createServiceAnimalFactory) {
@@ -23,74 +23,87 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     }
 
     @Override
-    public String[] findLeapYearNames() {
-        Optional<Animal[]> optionalObj = Optional.ofNullable(animals);
-        optionalObj.orElseThrow(() -> new NullPointerException("Argument is null"));
-        List<String> names = new ArrayList<>();
-        for (Animal animal : animals) {
-            int year = animal.getBirthday().getYear();
-            if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
-                names.add(animal.getName());
-            }
-        }
-        System.out.println("Animals born in the leap year:");
-        for (String name : names) {
-            System.out.println(name);
-        }
-        return names.toArray(new String[0]);
-    }
-
-    @Override
-    public Animal[] findOlderAnimal(int age) {
-        if (age < 0) {
-            throw new IllegalArgumentException(String.format("Incorrect arguments: [%s]/n", age));
-        }
-        Optional<Animal[]> optionalObj = Optional.ofNullable(animals);
-        optionalObj.orElseThrow(() -> new NullPointerException("Argument is null"));
-        List<Animal> olderAnimals = new ArrayList<>();
-        LocalDate currentDate = LocalDate.now();
-        for (Animal animal : animals) {
-            LocalDate birthDate = animal.getBirthday();
-            int years = currentDate.getYear() - birthDate.getYear();
-            if (birthDate.plusYears(years).isAfter(currentDate)) {
-                years--;
-            }
-            if (years > age) {
-                olderAnimals.add(animal);
-            }
-        }
-        System.out.printf("Animals are older %s years ", age);
-        for (Animal animal : olderAnimals) {
-            System.out.println(animal.getName() + " (" + animal.getBirthday().getYear() + ")");
-        }
-        return olderAnimals.toArray(new Animal[0]);
-    }
-
-    @Override
-    public Set<Animal> findDuplicate() {
-
-        if (animals == null || animals.length == 0 || animals.length == 1) {
-            return new HashSet<Animal>();
-        }
-        Set<Animal> animalsSet = new HashSet<>();
-        for (int i = 0; i < animals.length; i++) {
-
-            for (int j = i + 1; j < animals.length; j++) {
-                if (animals[i].equals(animals[j])) {
-                    animalsSet.add(animals[i]);
+    public Map<String, LocalDate> findLeapYearNames() {
+        Optional.ofNullable(animals).orElseThrow(() -> new RuntimeException("Map is empty"));
+        Map<String, LocalDate> animalNameMap = new HashMap<>();
+        for (Map.Entry<String, List<Animal>> animal : animals.entrySet()) {
+            String type = animal.getKey();
+            List<Animal> animalList = animal.getValue();
+            for (Animal animalNameList : animalList) {
+                int year = animalNameList.getBirthday().getYear();
+                if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
+                    String key = type + " " + animalNameList.getName();
+                    animalNameMap.put(key, animalNameList.getBirthday());
                 }
             }
         }
-        return animalsSet;
+        return animalNameMap;
     }
 
     @Override
+    public Map<Animal, Integer> findOlderAnimal(int age) {
+        if (age < 0) {
+            throw new IllegalArgumentException(String.format("Incorrect arguments: [%s]/n", age));
+        }
+        Optional.ofNullable(animals).orElseThrow(() -> new RuntimeException("Map is empty"));
+        Map<Animal, Integer> animalIntegerMap = new HashMap<>();
+        Animal olderAnimal = null;
+        LocalDate currentDate = LocalDate.now();
+        int max = 0;
+        for (Map.Entry<String, List<Animal>> animalEntry : animals.entrySet()) {
+            List<Animal> animalList = animalEntry.getValue();
+            for (Animal animal : animalList) {
+                int years = currentDate.getYear() - animal.getBirthday().getYear();
+                if (years > age) {
+                    animalIntegerMap.put(animal, years);
+                } else if (years > max) {
+                    max = years;
+                    olderAnimal = animal;
+                }
+            }
+        }
+        if (animalIntegerMap.isEmpty()) {
+            animalIntegerMap.put(olderAnimal, max);
+        }
+        return animalIntegerMap;
+    }
+
+
+    @Override
+    public Map<String, Integer> findDuplicate() {
+        int i;
+        Set<Animal> AnimalsSet = new HashSet<>();
+        Map<String, Integer> duplicate = new HashMap<>();
+        for (Map.Entry<String, List<Animal>> animalEntry : animals.entrySet()) {
+            String animalType = animalEntry.getKey();
+            List<Animal> animalList = animalEntry.getValue();
+            for (Animal animal : animalList) {
+                if (!AnimalsSet.add(animal)) {
+                    if (duplicate.get(animalType) == null) {
+                        i = 1;
+                    } else {
+                        i = duplicate.get(animalType);
+                    }
+                    duplicate.put(animalType, ++i);
+                }
+            }
+        }
+        return duplicate;
+    }
+
+
+    @Override
     public void printDuplicate() {
-        Set<Animal> set = findDuplicate();
-        if (set.isEmpty())
+        Map<String, Integer> animalSet = findDuplicate();
+        if (!animalSet.isEmpty()) {
+            System.out.println("Duplicates:");
+            for (Map.Entry<String, Integer> entry : animalSet.entrySet()) {
+                String entryKey = entry.getKey();
+                Integer integer = entry.getValue();
+                System.out.println(entryKey + "=" + integer);
+            }
+        } else {
             System.out.println("No duplicates found");
-        for (Animal animal : set) {
-            System.out.println("Duplicates: " + animal.getName());
         }
     }
 }
