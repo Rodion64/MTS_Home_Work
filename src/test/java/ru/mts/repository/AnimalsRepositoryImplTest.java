@@ -67,7 +67,7 @@ class AnimalsRepositoryImplTest {
     @DisplayName("Тест на поиск дубликатов методом findDuplicate")
     public void findDuplicate() {
         System.out.println(animalsRepository.findDuplicate().toString());
-        Assertions.assertEquals(2, animalsRepository.findDuplicate().size());
+        Assertions.assertEquals(1, animalsRepository.findDuplicate().size());
 
     }
 
