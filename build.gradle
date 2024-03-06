@@ -18,10 +18,12 @@ repositories {
 }
 
 dependencies {
+
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.14'
     implementation project(':animal-starter')
     testImplementation 'org.mockito:mockito-core:5.10.0'
+
 }
 
 test {
