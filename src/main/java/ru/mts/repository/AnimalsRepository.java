@@ -55,12 +55,13 @@ public interface AnimalsRepository {
      */
     List<Animal> findOldAnimalExpensive(List<Animal> animalLists);
 
+
     /**
      * Find min const animals list.
      *
      * @param animalLists the animal lists
      * @return the list
      */
-    List<Animal> findMinConstAnimals(List<Animal> animalLists);
+    List<String> findMinConstAnimals(List<Animal> animalLists);
 
 }

@@ -136,6 +136,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
         return animalList;
     }
 
+    @Override
     public void findAverageAge(List<Animal> animalLists) {
         System.out.println("Average age: " + animalLists.stream()
                 .map(Animal::getBirthday)
@@ -145,7 +146,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
         );
     }
 
-
+    @Override
     public List<Animal> findOldAnimalExpensive(List<Animal> animalLists) {
         BigDecimal sumOfCost = animalLists.stream()
                 .map(Animal::getCost)
@@ -160,11 +161,13 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     }
 
 
-    public List<Animal> findMinConstAnimals(List<Animal> animalLists) {
+    @Override
+    public List<String> findMinConstAnimals(List<Animal> animalLists) {
         return animalLists.stream()
                 .sorted(Comparator.comparing(Animal::getCost))
                 .limit(3)
                 .sorted(Comparator.comparing(Animal::getName).reversed())
+                .map(Animal::getName)
                 .collect(Collectors.toList());
     }
 
