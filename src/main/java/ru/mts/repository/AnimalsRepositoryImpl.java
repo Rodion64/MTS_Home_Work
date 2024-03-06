@@ -40,7 +40,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
                             return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
                         })
                         .map(animal -> {
-                            String key = entry.getKey() + " " + animal.getName();
+                            String key = animal.getClass().getSimpleName() + " " + animal.getName();
                             return Map.entry(key, animal.getBirthday());
                         }))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
