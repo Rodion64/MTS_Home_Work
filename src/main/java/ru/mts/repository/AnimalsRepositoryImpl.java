@@ -66,7 +66,27 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
         if (animalIntegerMap.isEmpty()) {
             Animal olderAnimal = animals.entrySet().stream()
                     .flatMap(entry -> entry.getValue().stream())
-                    .reduce((animal1, animal2) -> currentDate.getYear() - animal1.getBirthday().getYear() > currentDate.getYear() - animal2.getBirthday().getYear() ? animal1 : animal2)
+                    .reduce((animal1, animal2) -> {
+                        Period ageDifference1 = Period.between(animal1.getBirthday(), currentDate);
+                        Period ageDifference2 = Period.between(animal2.getBirthday(), currentDate);
+                        if (ageDifference1.getYears() > ageDifference2.getYears()) {
+                            return animal1;
+                        } else if (ageDifference1.getYears() < ageDifference2.getYears()) {
+                            return animal2;
+                        } else {
+                            if (ageDifference1.getMonths() > ageDifference2.getMonths()) {
+                                return animal1;
+                            } else if (ageDifference1.getMonths() < ageDifference2.getMonths()) {
+                                return animal2;
+                            } else {
+                                if (ageDifference1.getDays() > ageDifference2.getDays()) {
+                                    return animal1;
+                                } else {
+                                    return animal2;
+                                }
+                            }
+                        }
+                    })
                     .orElse(null);
 
             int max = currentDate.getYear() - olderAnimal.getBirthday().getYear();
@@ -76,6 +96,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
         return animalIntegerMap;
     }
 
+    @Override
 
     public Map<String, List<Animal>> findDuplicate() {
         Set<Animal> animalsSet = new HashSet<>();
@@ -100,26 +121,27 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
             System.out.println("No duplicates found");
         }
     }
-   public List<Animal> convertUsingForLoop() {
+
+    public List<Animal> convertUsingForLoop() {
         if (animals == null) {
             return null;
         }
         List<Animal> animalList = new ArrayList<>();
         for (Map.Entry<String, List<Animal>> entry : animals.entrySet()) {
-            List<Animal> arrayAnimal =  entry.getValue();
-            for (int i =0; i< arrayAnimal.size();i++){
-                animalList.add(i,arrayAnimal.get(i));
+            List<Animal> arrayAnimal = entry.getValue();
+            for (int i = 0; i < arrayAnimal.size(); i++) {
+                animalList.add(i, arrayAnimal.get(i));
             }
         }
         return animalList;
     }
 
     public void findAverageAge(List<Animal> animalLists) {
-        System.out.println("Average age: "+ animalLists.stream()
+        System.out.println("Average age: " + animalLists.stream()
                 .map(Animal::getBirthday)
                 .map(a -> Period.between(a, LocalDate.now()).getYears())
                 .mapToInt(Integer::intValue)
-                .average().orElse(0)
+                .average().orElseThrow(() -> new IllegalStateException("No animals to calculate average age"))
         );
     }
 
