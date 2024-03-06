@@ -1,0 +1,3 @@
+application:
+    scheduler:
+      time: 60000
