@@ -36,11 +36,6 @@ public class MockConfiguration {
         List<Animal> animalListWolf = new ArrayList<>();
         animalListWolf.add(new Wolf("Red wolf", "Tomas", new BigDecimal("1000.00"), "Friendly", birthday2));
         animalListWolf.add(new Wolf("Red wolf", "Tomas", new BigDecimal("1000.00"), "Friendly", birthday2));
-
-        animalListWolf.add(new Wolf("Red wolf", "Tomas", new BigDecimal("1000.00"), "Friendly", birthday2));
-        animalListWolf.add(new Wolf("Red wolf", "Tomas", new BigDecimal("1000.00"), "Friendly", birthday2));
-
-
         animals.put("Dog", animalListDog);
         animals.put("Wolf", animalListWolf);
         Mockito.when(mock.createAnimals()).thenReturn(animals);
