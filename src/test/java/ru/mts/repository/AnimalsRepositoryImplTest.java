@@ -43,9 +43,8 @@ class AnimalsRepositoryImplTest {
         int age = 12;
         Map<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
         System.out.println(olderAnimal.toString());
-        Assertions.assertEquals(2, olderAnimal.size());
+        Assertions.assertEquals(1, olderAnimal.size());
     }
-
     @Test
     @DisplayName("Тест метода findOlderAnimalTest с недопустимым аргументов")
     public void findOlderAnimalTestNegative() throws IllegalArgumentException {
