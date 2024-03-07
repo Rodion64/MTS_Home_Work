@@ -64,10 +64,5 @@ public interface AnimalsRepository {
 	 */
 	List<String> findMinConstAnimals(List<Animal> animalLists);
 
-	/**
-	 * Convert using for loop list.
-	 *
-	 * @return the list
-	 */
-	List<Animal> convertUsingForLoop();
+
 }

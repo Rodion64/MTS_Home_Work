@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class AnimalScheduled {
 	@Autowired
-	private final AnimalsRepository animalsRepository;
+	private final AnimalsRepositoryImpl animalsRepository;
 
 	public AnimalScheduled(AnimalsRepositoryImpl animalsRepository) {
 		this.animalsRepository = animalsRepository;
