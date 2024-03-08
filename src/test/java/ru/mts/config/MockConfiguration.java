@@ -32,7 +32,6 @@ public class MockConfiguration {
 
         List<Animal> animalListDog = new ArrayList<>();
         animalListDog.add(new Dog("Bulldog", "Myrsik", new BigDecimal("1000.00"), "Friendly", birthday));
-        animalListDog.add(new Dog("Bulldog", "Myrsik", new BigDecimal("1000.00"), "Friendly", birthday));
         animalListDog.add(new Dog("Bulldog", "Oldest", new BigDecimal("1000.00"), "Friendly", birthday3));
         List<Animal> animalListWolf = new ArrayList<>();
         animalListWolf.add(new Wolf("Red wolf", "Tomas", new BigDecimal("1000.00"), "Friendly", birthday2));

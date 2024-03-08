@@ -43,9 +43,8 @@ class AnimalsRepositoryImplTest {
         int age = 12;
         Map<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
         System.out.println(olderAnimal.toString());
-        Assertions.assertEquals(2, olderAnimal.size());
+        Assertions.assertEquals(1, olderAnimal.size());
     }
-
     @Test
     @DisplayName("Тест метода findOlderAnimalTest с недопустимым аргументов")
     public void findOlderAnimalTestNegative() throws IllegalArgumentException {
@@ -67,7 +66,7 @@ class AnimalsRepositoryImplTest {
     @DisplayName("Тест на поиск дубликатов методом findDuplicate")
     public void findDuplicate() {
         System.out.println(animalsRepository.findDuplicate().toString());
-        Assertions.assertEquals(2, animalsRepository.findDuplicate().size());
+        Assertions.assertEquals(1, animalsRepository.findDuplicate().size());
 
     }
 
