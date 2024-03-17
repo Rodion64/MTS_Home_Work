@@ -3,6 +3,8 @@ package ru.mts.repository;
 import org.springframework.stereotype.Repository;
 import ru.mts.create.CreateServiceAnimalFactoryImpl;
 import ru.mts.entity.Animal;
+import ru.mts.exceptions.IllegalListException;
+import ru.mts.exceptions.IllegalValueException;
 
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
@@ -40,9 +42,9 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
 	}
 
 	@Override
-	public Map<Animal, Integer> findOlderAnimal(int age) {
+	public Map<Animal, Integer> findOlderAnimal(int age) throws IllegalValueException {
 		if (age < 0) {
-			throw new IllegalArgumentException(String.format("Incorrect arguments: [%s]/n", age));
+			throw new IllegalValueException(String.format("Incorrect arguments: [%s]/n", age));
 		}
 		Optional.ofNullable(animals).orElseThrow(() -> new RuntimeException("Map is empty"));
 		LocalDate currentDate = LocalDate.now();
@@ -130,6 +132,14 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
 
 	@Override
 	public List<String> findMinConstAnimals(List<Animal> animalLists) {
+
+		if (animalLists == null || animalLists.size() < 3) {
+			try {
+				throw new IllegalListException("The map called 'animalLists' is either null or contains fewer than 3 elements.");
+			} catch (IllegalListException e) {
+				throw new RuntimeException(e);
+			}
+		}
 		return animalLists.stream()
 				.sorted(Comparator.comparing(Animal::getCost))
 				.limit(3)

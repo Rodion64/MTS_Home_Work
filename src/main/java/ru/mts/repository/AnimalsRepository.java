@@ -1,6 +1,7 @@
 package ru.mts.repository;
 
 import ru.mts.entity.Animal;
+import ru.mts.exceptions.IllegalValueException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,7 +27,7 @@ public interface AnimalsRepository {
 	 * @param N the n
 	 * @return the map
 	 */
-	Map<Animal, Integer> findOlderAnimal(int N);
+	Map<Animal, Integer> findOlderAnimal(int N) throws IllegalValueException;
 
 	/**
 	 * Find duplicate map.
