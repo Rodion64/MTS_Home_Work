@@ -107,7 +107,10 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
 	}
 
 	@Override
-	public void findAverageAge(List<Animal> animalLists) {
+	public void findAverageAge(List<Animal> animalLists) throws IllegalListException {
+		if (animalLists == null || animalLists.isEmpty()) {
+			throw new IllegalListException("List of animals is null or empty");
+		}
 		System.out.println("Average age: " + animalLists.stream()
 				.map(Animal::getBirthday)
 				.map(a -> Period.between(a, LocalDate.now()).getYears())
@@ -117,7 +120,10 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
 	}
 
 	@Override
-	public List<Animal> findOldAnimalExpensive(List<Animal> animalLists) {
+	public List<Animal> findOldAnimalExpensive(List<Animal> animalLists) throws IllegalListException {
+		if (animalLists == null || animalLists.isEmpty()) {
+			throw new IllegalListException("List of animals is null or empty");
+		}
 		BigDecimal averageCost = animalLists.stream()
 				.map(Animal::getCost)
 				.map(Objects::requireNonNull)
@@ -131,14 +137,11 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
 	}
 
 	@Override
-	public List<String> findMinConstAnimals(List<Animal> animalLists) {
-
-		if (animalLists == null || animalLists.size() < 3) {
-			try {
-				throw new IllegalListException("The map called 'animalLists' is either null or contains fewer than 3 elements.");
-			} catch (IllegalListException e) {
-				throw new RuntimeException(e);
-			}
+	public List<String> findMinConstAnimals(List<Animal> animalLists) throws IllegalListException {
+		if (animalLists == null) {
+			throw new IllegalListException("List is null");
+		} else if (animalLists.size() < 3) {
+			throw new IllegalListException("List size is less than 3");
 		}
 		return animalLists.stream()
 				.sorted(Comparator.comparing(Animal::getCost))
@@ -148,7 +151,9 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
 				.collect(Collectors.toList());
 	}
 
+
 	private boolean checkLeapYear(int year) {
 		return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
 	}
 }
+

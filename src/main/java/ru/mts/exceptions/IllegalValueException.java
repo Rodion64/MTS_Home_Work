@@ -1,6 +1,6 @@
 package ru.mts.exceptions;
 
-public class IllegalValueException extends IllegalListException {
+public class IllegalValueException extends IllegalArgumentException {
 	public IllegalValueException() {
 		super();
 	}

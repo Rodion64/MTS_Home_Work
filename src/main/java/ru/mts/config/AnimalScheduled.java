@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import ru.mts.entity.Animal;
+import ru.mts.exceptions.IllegalListException;
+import ru.mts.exceptions.IllegalValueException;
 import ru.mts.repository.AnimalsRepository;
 import ru.mts.repository.AnimalsRepositoryImpl;
 
@@ -28,6 +30,10 @@ public class AnimalScheduled {
 			System.out.println(animalsRepository.findDuplicate());
 			System.out.println("-------------------------------------------------------");
 			animalsRepository.printDuplicate();
+		} catch (IllegalValueException e) {
+			System.out.println(e);
+		}
+		try {
 			System.out.println("-------------------------------------------------------");
 			List<Animal> animalList;
 			animalList = animalsRepository.convertUsingForLoop();
@@ -36,8 +42,9 @@ public class AnimalScheduled {
 			System.out.println(animalsRepository.findOldAnimalExpensive(animalList));
 			System.out.println("-------------------------------------------------------");
 			System.out.println(animalsRepository.findMinConstAnimals(animalList));
-		} catch (Exception e) {
-			System.out.println("An error occurred: " + e);
+		}catch (IllegalListException e){
+			System.out.println(e);
 		}
+
 	}
 }
