@@ -30,10 +30,6 @@ public class AnimalScheduled {
 			System.out.println(animalsRepository.findDuplicate());
 			System.out.println("-------------------------------------------------------");
 			animalsRepository.printDuplicate();
-		} catch (IllegalValueException e) {
-			System.out.println(e);
-		}
-		try {
 			System.out.println("-------------------------------------------------------");
 			List<Animal> animalList;
 			animalList = animalsRepository.convertUsingForLoop();
@@ -42,7 +38,7 @@ public class AnimalScheduled {
 			System.out.println(animalsRepository.findOldAnimalExpensive(animalList));
 			System.out.println("-------------------------------------------------------");
 			System.out.println(animalsRepository.findMinConstAnimals(animalList));
-		}catch (IllegalListException e){
+		} catch (IllegalListException | IllegalValueException e) {
 			System.out.println(e);
 		}
 
