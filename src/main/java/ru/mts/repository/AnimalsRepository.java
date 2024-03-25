@@ -1,6 +1,8 @@
 package ru.mts.repository;
 
 import ru.mts.entity.Animal;
+import ru.mts.exceptions.IllegalListException;
+import ru.mts.exceptions.IllegalValueException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,7 +28,7 @@ public interface AnimalsRepository {
 	 * @param N the n
 	 * @return the map
 	 */
-	Map<Animal, Integer> findOlderAnimal(int N);
+	Map<Animal, Integer> findOlderAnimal(int N) throws IllegalValueException;
 
 	/**
 	 * Find duplicate map.
@@ -45,7 +47,7 @@ public interface AnimalsRepository {
 	 *
 	 * @param animalLists the animal lists
 	 */
-	void findAverageAge(List<Animal> animalLists);
+	void findAverageAge(List<Animal> animalLists) throws IllegalListException;
 
 	/**
 	 * Find old animal expensive list.
@@ -53,7 +55,7 @@ public interface AnimalsRepository {
 	 * @param animalLists the animal lists
 	 * @return the list
 	 */
-	List<Animal> findOldAnimalExpensive(List<Animal> animalLists);
+	List<Animal> findOldAnimalExpensive(List<Animal> animalLists) throws IllegalListException;
 
 
 	/**
@@ -62,7 +64,7 @@ public interface AnimalsRepository {
 	 * @param animalLists the animal lists
 	 * @return the list
 	 */
-	List<String> findMinConstAnimals(List<Animal> animalLists);
+	List<String> findMinConstAnimals(List<Animal> animalLists) throws IllegalListException;
 
 
 }
