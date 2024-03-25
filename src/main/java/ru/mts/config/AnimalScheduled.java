@@ -10,6 +10,7 @@ import ru.mts.repository.AnimalsRepository;
 import ru.mts.repository.AnimalsRepositoryImpl;
 
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
 public class AnimalScheduled {
@@ -31,7 +32,7 @@ public class AnimalScheduled {
 			System.out.println("-------------------------------------------------------");
 			animalsRepository.printDuplicate();
 			System.out.println("-------------------------------------------------------");
-			List<Animal> animalList;
+			CopyOnWriteArrayList<Animal> animalList;
 			animalList = animalsRepository.convertUsingForLoop();
 			animalsRepository.findAverageAge(animalList);
 			System.out.println("-------------------------------------------------------");

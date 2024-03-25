@@ -8,6 +8,8 @@ import ru.mts.entity.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * The type Create service animal factory.
@@ -25,9 +27,9 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
 
 
     @Override
-    public Map<String, List<Animal>> createAnimals() {
+    public ConcurrentMap<String, List<Animal>> createAnimals() {
         int n = 10;
-        Map<String, List<Animal>> animalsMap = new HashMap<>();
+        ConcurrentMap<String, List<Animal>> animalsMap = new ConcurrentHashMap<>();
         List<Animal> cats = new ArrayList<>();
         animalsMap.put("Cat", cats);
         List<Animal> wolfs = new ArrayList<>();
@@ -58,13 +60,13 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
         Animal animal = null;
         switch (animalType) {
             case CAT:
-                animal =  new Cat(breedCat, name, cost, character, birthday);
+                animal = new Cat(breedCat, name, cost, character, birthday);
                 break;
             case WOLF:
-               animal = new Wolf(breedWolf, name, cost, character, birthday);
+                animal = new Wolf(breedWolf, name, cost, character, birthday);
                 break;
             case DOG:
-               animal = new Dog(breedDog, name, cost, character, birthday);
+                animal = new Dog(breedDog, name, cost, character, birthday);
                 break;
             case TIGER:
                 animal = new Tiger(breedTiger, name, cost, character, birthday);

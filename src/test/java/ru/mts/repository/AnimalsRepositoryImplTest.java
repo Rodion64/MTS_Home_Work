@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 @SpringBootTest(classes = AnimalsRepositoryImpl.class)
@@ -31,7 +33,7 @@ import java.util.Map;
 class AnimalsRepositoryImplTest {
 	@Autowired
 	AnimalsRepository animalsRepository;
-	static List<Animal> animalList = new ArrayList<>();
+	static CopyOnWriteArrayList<Animal> animalList = new CopyOnWriteArrayList<>();
 
 
 	@BeforeAll
@@ -49,7 +51,7 @@ class AnimalsRepositoryImplTest {
 	@Test
 	@DisplayName("Тест работу findLeapYearNames в поизитовном сценарии")
 	public void findLeapYearNamesTest() {
-		Map<String, LocalDate> leapYearNames = animalsRepository.findLeapYearNames();
+		ConcurrentMap<String, LocalDate> leapYearNames = animalsRepository.findLeapYearNames();
 		System.out.println(leapYearNames.toString());
 		Assertions.assertEquals(2, leapYearNames.size());
 	}
@@ -57,7 +59,7 @@ class AnimalsRepositoryImplTest {
 	@Test
 	@DisplayName("Тест работу метода findLeapYearNames в негативном сценарии")
 	public void findLeapYearNamesTestNegtive() {
-		Map<String, LocalDate> leapYearNames = animalsRepository.findLeapYearNames();
+		ConcurrentMap<String, LocalDate> leapYearNames = animalsRepository.findLeapYearNames();
 		System.out.println(leapYearNames.toString());
 		Assertions.assertNotEquals(0, leapYearNames.size());
 	}
@@ -66,7 +68,7 @@ class AnimalsRepositoryImplTest {
 	@DisplayName("Тест метода findOlderAnimalTest")
 	public void findOlderAnimalTest() {
 		int age = 12;
-		Map<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
+		ConcurrentMap<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
 		System.out.println(olderAnimal.toString());
 		Assertions.assertEquals(1, olderAnimal.size());
 	}
@@ -82,7 +84,7 @@ class AnimalsRepositoryImplTest {
 	@DisplayName("Тест метода findOlderAnimalTest с выводом самого старшего животного")
 	public void findOlderAnimalTes() throws IllegalArgumentException {
 		int age = 50;
-		Map<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
+		ConcurrentMap<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
 		System.out.println(olderAnimal.toString());
 		Assertions.assertEquals(1, olderAnimal.size());
 	}
@@ -105,14 +107,14 @@ class AnimalsRepositoryImplTest {
 	@Test
 	@DisplayName("Тест findAverageAge()")
 	public void findAverageAge() {
-		List<Animal> list = null;
+		CopyOnWriteArrayList<Animal> list = null;
 		Assertions.assertThrows(IllegalListException.class, () -> animalsRepository.findAverageAge(list));
 	}
 
 	@Test
 	@DisplayName("Тест  findOldAnimalExpensive()")
 	public void findOldAnimalExpensive() {
-		List<Animal> list = null;
+		CopyOnWriteArrayList<Animal> list = null;
 		Assertions.assertThrows(IllegalListException.class, () -> animalsRepository.findOldAnimalExpensive(list));
 	}
 
@@ -125,7 +127,7 @@ class AnimalsRepositoryImplTest {
 	@Test
 	@DisplayName("Тест  findMinConstAnimals()")
 	public void findMinConstAnimals2() {
-		List<Animal> list = null;
+		CopyOnWriteArrayList<Animal> list = null;
 		Assertions.assertThrows(IllegalListException.class, () -> animalsRepository.findMinConstAnimals(list));
 	}
 

@@ -7,6 +7,8 @@ import ru.mts.exceptions.IllegalValueException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 /**
@@ -19,7 +21,7 @@ public interface AnimalsRepository {
 	 *
 	 * @return the map
 	 */
-	Map<String, LocalDate> findLeapYearNames();
+	ConcurrentMap<String, LocalDate> findLeapYearNames();
 
 
 	/**
@@ -28,14 +30,14 @@ public interface AnimalsRepository {
 	 * @param N the n
 	 * @return the map
 	 */
-	Map<Animal, Integer> findOlderAnimal(int N) throws IllegalValueException;
+	ConcurrentMap<Animal, Integer> findOlderAnimal(int N) throws IllegalValueException;
 
 	/**
 	 * Find duplicate map.
 	 *
 	 * @return the map
 	 */
-	Map<String, List<Animal>> findDuplicate();
+	ConcurrentMap<String, List<Animal>> findDuplicate();
 
 	/**
 	 * Print duplicate.
@@ -47,7 +49,7 @@ public interface AnimalsRepository {
 	 *
 	 * @param animalLists the animal lists
 	 */
-	void findAverageAge(List<Animal> animalLists) throws IllegalListException;
+	void findAverageAge(CopyOnWriteArrayList<Animal> animalLists) throws IllegalListException;
 
 	/**
 	 * Find old animal expensive list.
@@ -55,7 +57,7 @@ public interface AnimalsRepository {
 	 * @param animalLists the animal lists
 	 * @return the list
 	 */
-	List<Animal> findOldAnimalExpensive(List<Animal> animalLists) throws IllegalListException;
+	CopyOnWriteArrayList<Animal> findOldAnimalExpensive(CopyOnWriteArrayList<Animal> animalLists) throws IllegalListException;
 
 
 	/**
@@ -64,7 +66,7 @@ public interface AnimalsRepository {
 	 * @param animalLists the animal lists
 	 * @return the list
 	 */
-	List<String> findMinConstAnimals(List<Animal> animalLists) throws IllegalListException;
+	CopyOnWriteArrayList<String> findMinConstAnimals(CopyOnWriteArrayList<Animal> animalLists) throws IllegalListException;
 
 
 }
