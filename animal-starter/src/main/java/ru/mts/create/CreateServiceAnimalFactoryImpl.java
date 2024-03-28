@@ -1,15 +1,11 @@
 package ru.mts.create;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import ru.mts.entity.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 
 /**
  * The type Create service animal factory.
@@ -27,9 +23,9 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
 
 
     @Override
-    public ConcurrentMap<String, List<Animal>> createAnimals() {
+    public Map<String, List<Animal>> createAnimals() {
         int n = 10;
-        ConcurrentMap<String, List<Animal>> animalsMap = new ConcurrentHashMap<>();
+        Map<String, List<Animal>> animalsMap = new HashMap<>();
         List<Animal> cats = new ArrayList<>();
         animalsMap.put("Cat", cats);
         List<Animal> wolfs = new ArrayList<>();

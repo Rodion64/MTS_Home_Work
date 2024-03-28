@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Repository
 public class AnimalsRepositoryImpl implements AnimalsRepository {
-    private ConcurrentMap<String, List<Animal>> animals = new ConcurrentHashMap<>();
+    private Map<String, List<Animal>> animals = new ConcurrentHashMap<>();
     private final CreateServiceAnimalFactoryImpl createServiceAnimalFactory;
 
     public AnimalsRepositoryImpl(CreateServiceAnimalFactoryImpl createServiceAnimalFactory) {
@@ -33,9 +33,8 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
 
 
     @Override
-    public ConcurrentMap<String, LocalDate> findLeapYearNames() {
+    public Map<String, LocalDate> findLeapYearNames() {
         Optional.ofNullable(animals).orElseThrow(() -> new RuntimeException("Map is empty"));
-
         return animals.entrySet().stream()
                 .flatMap(entry -> entry.getValue().stream()
                         .filter(animal -> checkLeapYear(animal.getBirthday().getYear()))
@@ -47,13 +46,13 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     }
 
     @Override
-    public ConcurrentMap<Animal, Integer> findOlderAnimal(int age) throws IllegalValueException {
+    public Map<Animal, Integer> findOlderAnimal(int age) throws IllegalValueException {
         if (age < 0) {
             throw new IllegalValueException(String.format("Incorrect arguments: [%s]/n", age));
         }
         Optional.ofNullable(animals).orElseThrow(() -> new RuntimeException("Map is empty"));
         LocalDate currentDate = LocalDate.now();
-        ConcurrentMap<Animal, Integer> animalIntegerMap = new ConcurrentHashMap<>();
+        Map<Animal, Integer> animalIntegerMap = new ConcurrentHashMap<>();
         animals.entrySet().stream()
                 .flatMap(entry -> entry.getValue().stream())
                 .forEach(animal -> {
@@ -75,7 +74,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     }
 
     @Override
-    public ConcurrentMap<String, List<Animal>> findDuplicate() {
+    public Map<String, List<Animal>> findDuplicate() {
         Set<Animal> animalsSet = ConcurrentHashMap.newKeySet();
         return animals.values().parallelStream()
                 .flatMap(List::stream)
@@ -98,11 +97,11 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
         }
     }
 
-    public CopyOnWriteArrayList<Animal> convertUsingForLoop() {
+    public List<Animal> convertUsingForLoop() {
         if (animals == null) {
             return null;
         }
-        CopyOnWriteArrayList<Animal> animalList = new CopyOnWriteArrayList<>();
+        List<Animal> animalList = new CopyOnWriteArrayList<>();
         for (Map.Entry<String, List<Animal>> entry : animals.entrySet()) {
             List<Animal> arrayAnimal = entry.getValue();
             for (int i = 0; i < arrayAnimal.size(); i++) {
@@ -113,7 +112,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     }
 
     @Override
-    public void findAverageAge(CopyOnWriteArrayList<Animal> animalLists) throws IllegalListException {
+    public void findAverageAge(List<Animal> animalLists) throws IllegalListException {
         if (animalLists == null || animalLists.isEmpty()) {
             throw new IllegalListException("List of animals is null or empty");
         }
@@ -126,7 +125,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     }
 
     @Override
-    public CopyOnWriteArrayList<Animal> findOldAnimalExpensive(CopyOnWriteArrayList<Animal> animalLists) throws IllegalListException {
+    public List<Animal> findOldAnimalExpensive(List<Animal> animalLists) throws IllegalListException {
         if (animalLists == null || animalLists.isEmpty()) {
             throw new IllegalListException("List of animals is null or empty");
         }
@@ -143,7 +142,7 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     }
 
     @Override
-    public CopyOnWriteArrayList<String> findMinConstAnimals(CopyOnWriteArrayList<Animal> animalLists) throws IllegalListException {
+    public List<String> findMinConstAnimals(List<Animal> animalLists) throws IllegalListException {
         if (animalLists == null) {
             throw new IllegalListException("List is null");
         } else if (animalLists.size() < 3) {

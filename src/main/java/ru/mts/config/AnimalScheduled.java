@@ -32,7 +32,7 @@ public class AnimalScheduled {
 			System.out.println("-------------------------------------------------------");
 			animalsRepository.printDuplicate();
 			System.out.println("-------------------------------------------------------");
-			CopyOnWriteArrayList<Animal> animalList;
+			List<Animal> animalList = new CopyOnWriteArrayList<>();
 			animalList = animalsRepository.convertUsingForLoop();
 			animalsRepository.findAverageAge(animalList);
 			System.out.println("-------------------------------------------------------");

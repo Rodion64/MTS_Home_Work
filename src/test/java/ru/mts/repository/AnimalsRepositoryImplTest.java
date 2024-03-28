@@ -51,7 +51,7 @@ class AnimalsRepositoryImplTest {
 	@Test
 	@DisplayName("Тест работу findLeapYearNames в поизитовном сценарии")
 	public void findLeapYearNamesTest() {
-		ConcurrentMap<String, LocalDate> leapYearNames = animalsRepository.findLeapYearNames();
+		Map<String, LocalDate> leapYearNames = animalsRepository.findLeapYearNames();
 		System.out.println(leapYearNames.toString());
 		Assertions.assertEquals(2, leapYearNames.size());
 	}
@@ -59,7 +59,7 @@ class AnimalsRepositoryImplTest {
 	@Test
 	@DisplayName("Тест работу метода findLeapYearNames в негативном сценарии")
 	public void findLeapYearNamesTestNegtive() {
-		ConcurrentMap<String, LocalDate> leapYearNames = animalsRepository.findLeapYearNames();
+		Map<String, LocalDate> leapYearNames = animalsRepository.findLeapYearNames();
 		System.out.println(leapYearNames.toString());
 		Assertions.assertNotEquals(0, leapYearNames.size());
 	}
@@ -68,7 +68,7 @@ class AnimalsRepositoryImplTest {
 	@DisplayName("Тест метода findOlderAnimalTest")
 	public void findOlderAnimalTest() {
 		int age = 12;
-		ConcurrentMap<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
+		Map<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
 		System.out.println(olderAnimal.toString());
 		Assertions.assertEquals(1, olderAnimal.size());
 	}
@@ -84,7 +84,7 @@ class AnimalsRepositoryImplTest {
 	@DisplayName("Тест метода findOlderAnimalTest с выводом самого старшего животного")
 	public void findOlderAnimalTes() throws IllegalArgumentException {
 		int age = 50;
-		ConcurrentMap<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
+		Map<Animal, Integer> olderAnimal = animalsRepository.findOlderAnimal(age);
 		System.out.println(olderAnimal.toString());
 		Assertions.assertEquals(1, olderAnimal.size());
 	}
