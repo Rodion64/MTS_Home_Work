@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import ru.mts.entity.Animal;
 import ru.mts.exceptions.IllegalListException;
 import ru.mts.exceptions.IllegalValueException;
-import ru.mts.repository.AnimalsRepository;
 import ru.mts.repository.AnimalsRepositoryImpl;
 
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
 public class AnimalScheduled {
@@ -31,7 +31,7 @@ public class AnimalScheduled {
 			System.out.println("-------------------------------------------------------");
 			animalsRepository.printDuplicate();
 			System.out.println("-------------------------------------------------------");
-			List<Animal> animalList;
+			List<Animal> animalList = new CopyOnWriteArrayList<>();
 			animalList = animalsRepository.convertUsingForLoop();
 			animalsRepository.findAverageAge(animalList);
 			System.out.println("-------------------------------------------------------");

@@ -4,14 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
 import ru.mts.config.MockConfiguration;
-import ru.mts.create.CreateServiceAnimalFactoryImpl;
 import ru.mts.entity.Animal;
 import ru.mts.entity.Dog;
 import ru.mts.entity.Wolf;
@@ -19,10 +16,8 @@ import ru.mts.exceptions.IllegalListException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 @SpringBootTest(classes = AnimalsRepositoryImpl.class)
@@ -31,7 +26,7 @@ import java.util.Map;
 class AnimalsRepositoryImplTest {
 	@Autowired
 	AnimalsRepository animalsRepository;
-	static List<Animal> animalList = new ArrayList<>();
+	static CopyOnWriteArrayList<Animal> animalList = new CopyOnWriteArrayList<>();
 
 
 	@BeforeAll
@@ -105,14 +100,14 @@ class AnimalsRepositoryImplTest {
 	@Test
 	@DisplayName("Тест findAverageAge()")
 	public void findAverageAge() {
-		List<Animal> list = null;
+		CopyOnWriteArrayList<Animal> list = null;
 		Assertions.assertThrows(IllegalListException.class, () -> animalsRepository.findAverageAge(list));
 	}
 
 	@Test
 	@DisplayName("Тест  findOldAnimalExpensive()")
 	public void findOldAnimalExpensive() {
-		List<Animal> list = null;
+		CopyOnWriteArrayList<Animal> list = null;
 		Assertions.assertThrows(IllegalListException.class, () -> animalsRepository.findOldAnimalExpensive(list));
 	}
 
@@ -125,7 +120,7 @@ class AnimalsRepositoryImplTest {
 	@Test
 	@DisplayName("Тест  findMinConstAnimals()")
 	public void findMinConstAnimals2() {
-		List<Animal> list = null;
+		CopyOnWriteArrayList<Animal> list = null;
 		Assertions.assertThrows(IllegalListException.class, () -> animalsRepository.findMinConstAnimals(list));
 	}
 

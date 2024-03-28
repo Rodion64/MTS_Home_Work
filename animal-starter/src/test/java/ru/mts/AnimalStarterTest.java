@@ -9,7 +9,6 @@ import ru.mts.create.CreateService;
 import ru.mts.create.CreateServiceAnimalFactoryImpl;
 import ru.mts.entity.*;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 

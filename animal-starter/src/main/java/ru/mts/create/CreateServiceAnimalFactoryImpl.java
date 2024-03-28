@@ -1,8 +1,6 @@
 package ru.mts.create;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import ru.mts.entity.*;
 
 import java.math.BigDecimal;
@@ -58,13 +56,13 @@ public class CreateServiceAnimalFactoryImpl implements CreateService {
         Animal animal = null;
         switch (animalType) {
             case CAT:
-                animal =  new Cat(breedCat, name, cost, character, birthday);
+                animal = new Cat(breedCat, name, cost, character, birthday);
                 break;
             case WOLF:
-               animal = new Wolf(breedWolf, name, cost, character, birthday);
+                animal = new Wolf(breedWolf, name, cost, character, birthday);
                 break;
             case DOG:
-               animal = new Dog(breedDog, name, cost, character, birthday);
+                animal = new Dog(breedDog, name, cost, character, birthday);
                 break;
             case TIGER:
                 animal = new Tiger(breedTiger, name, cost, character, birthday);
