@@ -21,6 +21,12 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     private Map<String, List<Animal>> animals = new ConcurrentHashMap<>();
     private final CreateServiceAnimalFactoryImpl createServiceAnimalFactory;
 
+    private List<Animal> animalList = new CopyOnWriteArrayList<>();
+
+    public List<Animal> getAnimalList() {
+        return animalList;
+    }
+
     public AnimalsRepositoryImpl(CreateServiceAnimalFactoryImpl createServiceAnimalFactory) {
         this.createServiceAnimalFactory = createServiceAnimalFactory;
     }
@@ -28,6 +34,9 @@ public class AnimalsRepositoryImpl implements AnimalsRepository {
     @PostConstruct
     public void init() {
         animals = createServiceAnimalFactory.createAnimals();
+        for (Map.Entry<String, List<Animal>> entry : animals.entrySet()) {
+            animalList.addAll(entry.getValue());
+        }
     }
 
 
